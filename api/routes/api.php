@@ -31,9 +31,9 @@ Route::post('/login', [
     'as' => 'login'
 ]);
 
-Route::post('/checkUser', [
-    'uses' => 'UserController@checkUser',
-    'as' => 'checkUser'
+Route::post('/checkuser', [
+    'uses' => 'UserController@checkuser',
+    'as' => 'checkuser'
 ]);
 
 
