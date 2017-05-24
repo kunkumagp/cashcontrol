@@ -1,0 +1,14 @@
+{
+  "name": "Quotesharp",
+  "description": "Quotes make easier",
+  "version": "0.1.0",
+  "homepage": "https://github.com/tnajdek/angular-requirejs-seed",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "tether": "^1.4.0",
+    "bootstrap": "^3.3.7",
+    "PACE": "pace#^1.0.2"
+  }
+}
