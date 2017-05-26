@@ -10,7 +10,13 @@
                 token: token
             },
             function (data) {
-                document.getElementById("name").innerHTML = data['name'];
+                if(data==="expire"){
+                    localStorage.setItem("token", "");
+                    window.location.replace('index.html');
+                } else {
+                    document.getElementById("name").innerHTML = data['name'];
+                }
+
             });
 
     }
@@ -49,13 +55,6 @@
     <script src="js/views/main.js"></script>
 
 
-    <script>
-        $(document).ready(function () {
-            $("#logout").click(function () {
-                localStorage.setItem("token", "");
-                window.location.replace('index.html');
-            });
-        });
-    </script>
+
 
 </head>

@@ -32,7 +32,7 @@ class LoginController extends Controller
             return $authSession;
 
         } else{
-            return "error!";
+            return "error";
         }
 
 
