@@ -1,5 +1,8 @@
+<!DOCTYPE html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+    localStorage.setItem("page", "index");
+
     $(function () {
         $("#header").load("inc/header.html");
         $("#top").load("inc/top.html");
@@ -17,6 +20,8 @@
 
 </script>
 <div id="header"></div>
+
+</head>
 
 <body class="">
   <section class="vbox">
@@ -96,56 +101,17 @@
                     </div>
                   </div>           
                   <div class="row bg-light dk m-b">
-                    <div class="col-md-6 dker">
-                      <section>
-                        <header class="font-bold padder-v">
-                          <div class="pull-right">
-                            <div class="btn-group">
-                              <button data-toggle="dropdown" class="btn btn-sm btn-rounded btn-default dropdown-toggle">
-                                <span class="dropdown-label">Week</span>
-                                <span class="caret"></span>
-                              </button>
-                              <ul class="dropdown-menu dropdown-select">
-                                  <li><a href="#"><input type="radio" name="b">Month</a></li>
-                                  <li><a href="#"><input type="radio" name="b">Week</a></li>
-                                  <li><a href="#"><input type="radio" name="b">Day</a></li>
-                              </ul>
-                            </div>
-                            <a href="#" class="btn btn-default btn-icon btn-rounded btn-sm">Go</a>
-                          </div>
-                          Statistics
-                        </header>
-                        <div class="panel-body">
-                          <div id="flot-sp1ine" style="height:210px"></div>
-                        </div>
-
-                      </section>
-                    </div>
-                    <div class="col-md-6">
-                      <section>
-                        <header class="font-bold padder-v">
-                          <div class="btn-group pull-right">
-                            <button data-toggle="dropdown" class="btn btn-sm btn-rounded btn-default dropdown-toggle">
-                              <span class="dropdown-label">Last 24 Hours</span> 
-                              <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-select">
-                                <li><a href="#"><input type="radio" name="a">Today</a></li>
-                                <li><a href="#"><input type="radio" name="a">Yesterday</a></li>
-                                <li><a href="#"><input type="radio" name="a">Last 24 Hours</a></li>
-                                <li><a href="#"><input type="radio" name="a">Last 7 Days</a></li>
-                                <li><a href="#"><input type="radio" name="a">Last 30 days</a></li>
-                                <li><a href="#"><input type="radio" name="a">Last Month</a></li>
-                                <li><a href="#"><input type="radio" name="a">All Time</a></li>
-                            </ul>
-                          </div>
-                          Analysis
-                        </header>
-                        <div class="panel-body flot-legend">
-                          <div id="flot-pie-donut"  style="height:240px"></div>
+                    <div class="col-sm-12 portlet ui-sortable">
+                      <section class="panel panel-info portlet-item">
+                        <div class="list-group bg-white">
+                          <a href="#" class="list-group-item"> <i class="fa fa-fw fa-envelope"></i> Inbox </a>
+                          <a href="#" class="list-group-item"> <i class="fa fa-fw fa-eye"></i> Profile visits </a>
+                          <a href="#" class="list-group-item"> <i class="fa fa-fw fa-phone"></i> Call </a>
+                          <a href="#" class="list-group-item"> <i class="fa fa-fw fa-comments-o"></i> Messages </a>
+                          <a href="#" class="list-group-item"> <i class="fa fa-fw fa-bookmark"></i> Bookmarks </a>
+                          <a href="#" class="list-group-item"> <i class="fa fa-fw fa-bell"></i> Notifications </a>
                         </div>
                     </div>
-                  </div>
                   <div class="row">
                     <div class="col-md-4">
                       <section class="panel b-a">
