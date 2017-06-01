@@ -36,5 +36,13 @@ Route::post('/checkuser', [
     'as' => 'checkuser'
 ]);
 
+Route::post('/addCategory', [
+    'uses' => 'CategoryController@createCategory',
+    'as' => 'addCategory'
+]);
 
+Route::get('/getCategory', [
+    'uses' => 'CategoryController@getCategory',
+    'as' => 'getCategory'
+]);
 

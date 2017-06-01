@@ -1,9 +1,20 @@
 <script>
-    if(localStorage.getItem("page")==="income"){
-        var cls = '<li class="active">';
-//        var cls = "active";
-    }else{
-        var cls = '<li>';
+    if(localStorage.getItem("page")==="index"){
+        $( '#index' ).addClass( 'active' );
+    } else if(localStorage.getItem("page")==="category"){
+        $( '#category' ).addClass( 'active' );
+    } else if(localStorage.getItem("page")==="income"){
+        $( '#income' ).addClass( 'active' );
+    } else if(localStorage.getItem("page")==="expenses"){
+        $( '#expenses' ).addClass( 'active' );
+    } else if(localStorage.getItem("page")==="bills"){
+        $( '#bills' ).addClass( 'active' );
+    } else if(localStorage.getItem("page")==="loan"){
+        $( '#loan' ).addClass( 'active' );
+    } else if(localStorage.getItem("page")==="transfers"){
+        $( '#transfers' ).addClass( 'active' );
+    } else if(localStorage.getItem("page")==="reports"){
+        $( '#reports' ).addClass( 'active' );
     }
 </script>
 <section class="vbox">
@@ -12,35 +23,42 @@
             <!-- nav -->
             <nav class="nav-primary hidden-xs">
                 <ul class="nav nav-main" data-ride="collapse">
-                    <script>document.write(cls);</script>
+                    <li id="index">
                         <a href="index.html" class="auto">
                             <i class="i i-statistics icon">
                             </i>
                             <span class="font-bold">Dashboard</span>
                         </a>
                     </li>
-                    <li>
+                    <li id="category">
+                        <a href="category.html" class="auto">
+                            <i class="fa fa-folder-open">
+                            </i>
+                            <span class="font-bold">Category</span>
+                        </a>
+                    </li>
+                    <li id="income">
                         <a href="income.html" class="auto">
                             <i class="fa fa-money">
                             </i>
                             <span class="font-bold">Incomes</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="auto">
+                    <li id="expenses">
+                        <a href="expenses.html" class="auto">
                             <i class="fa fa-cc-visa">
                             </i>
                             <span class="font-bold">Expenses</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="auto">
+                    <li id="bills">
+                        <a href="bills.html" class="auto">
                             <i class="fa fa-file-text">
                             </i>
                             <span class="font-bold">Bills</span>
                         </a>
                     </li>
-                    <li >
+                    <li id="loan">
                         <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -67,7 +85,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li >
+                    <li id="transfers">
                         <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -94,7 +112,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="reports">
                         <a href="#">
                             <i class="fa fa-file-pdf-o"></i>
                             <span class="font-bold">Reports</span>

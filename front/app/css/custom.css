@@ -1,0 +1,14 @@
+.vbox > section, .vbox > footer{
+    width: 100%;
+}
+@media (max-width:600px){
+    .m-b-md{
+        margin-top: 60px;
+    }
+    .nav-main{
+        margin-top: 50px;
+    }
+    .vbox > section, .vbox > footer{
+        width: 100%;
+    }
+}
