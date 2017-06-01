@@ -10,6 +10,8 @@
     });
 
 
+
+
 </script>
 
 <link rel="stylesheet" href="js/datatables/datatables.css" type="text/css"/>
@@ -45,8 +47,13 @@
                                     <strong>Well done!</strong> You successfully read
                                     <a href="#" class="alert-link">this important alert message</a>.
                                 </div>
-                                <form class="form-horizontal" method="post" name="addCategories" id="addCategories">
-
+                                <form class="form-horizontal" method="get" name="addCategories" id="addCategories">
+                                    <div class="alert alert-success hidden" id="successmsg">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <i class="fa fa-ok-sign"></i>
+                                        <strong>Well done!</strong> You successfully read
+                                        <a href="#" class="alert-link">this important alert message</a>.
+                                    </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Category Title</label>
                                         <div class="col-sm-10">
@@ -91,6 +98,27 @@
                                 </table>
                             </div>
                             <script>
+
+                                $(document).ready(function () {
+                                    console.log(123);
+
+                                    $( "form" ).on( "submit", function( event ) {
+                                        event.preventDefault();
+                                        var e =  $( this ).serialize() ;
+
+
+                                        $.post("http://127.0.0.1:8000/api/addCategory",
+                                            e,
+                                            function (data) {
+                                                if(data==="success"){
+                                                    location.reload();
+                                                    $("#successmsg").removeClass(" hidden");
+                                                    document.getElementById("addCategories").reset();
+                                                }
+                                            });
+                                    });
+                                });
+
                                 $.get("http://127.0.0.1:8000/api/getCategory", function (data) {
                                     var myBooks = data;
 
@@ -111,6 +139,7 @@
                                             tabCell.innerHTML = myBooks[i][col[j]];
                                         }
                                     }
+
                                     $('[data-ride="datatables"]').each(function () {
                                         var categoryTable = document.getElementById("categoryTable");
                                         var oTable = $(categoryTable).dataTable({

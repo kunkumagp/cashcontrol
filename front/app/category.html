@@ -39,90 +39,58 @@
                   <h4><div class="">All Category List</div></h4>
                 </header>
                 <div class="table-responsive">
-                  <table class="table table-striped m-b-none" data-ride="datatables">
+
+                  <table class="table table-striped m-b-none" data-ride="datatables" id="categoryTable">
                     <thead>
-                      <tr>
-                        <th width="20%">Rendering engine</th>
-                        <th width="25%">Browser</th>
-                        <th width="25%">Platform(s)</th>
-                        <th width="15%">Engine version</th>
-                        <th width="15%">CSS grade</th>
-                      </tr>
+                    <tr>
+                      <th>ID</th>
+                      <th>Title</th>
+                      <th>Type</th>
+                    </tr>
                     </thead>
-                    <tbody role="alert" aria-live="polite" aria-relevant="all">
-                    <tr class="odd">
-                      <td class="">Gecko</td>
-                      <td class="">Firefox 1.0</td>
-                      <td class="">Win 98+ / OSX.2+</td>
-                      <td class="">1.7</td>
-                      <td class="">A</td>
-                    </tr>
-                    <tr class="even">
-                      <td class=" ">Gecko</td>
-                      <td class="">Firefox 1.5</td>
-                      <td class="">Win 98+ / OSX.2+</td>
-                      <td class="">1.8</td>
-                      <td class="">A</td>
-                    </tr>
-                    <tr class="odd">
-                      <td class=" sorting_1">Gecko</td>
-                      <td class="">Firefox 2.0</td>
-                      <td class="">Win 98+ / OSX.2+</td>
-                      <td class="">1.8</td>
-                      <td class="">A</td>
-                    </tr>
-                    <tr class="even">
-                      <td class=" sorting_1">Gecko</td>
-                      <td class="">Firefox 3.0</td>
-                      <td class="">Win 2k+ / OSX.3+</td>
-                      <td class="">1.9</td>
-                      <td class="">A</td>
-                    </tr>
-                    <tr class="odd">
-                      <td class=" sorting_1">Gecko</td>
-                      <td class="">Camino 1.0</td>
-                      <td class="">OSX.2+</td>
-                      <td class="">1.8</td>
-                      <td class="">A</td>
-                    </tr>
-                    <tr class="even">
-                      <td class=" sorting_1">Gecko</td>
-                      <td class="">Camino 1.5</td>
-                      <td class="">OSX.3+</td>
-                      <td class="">1.8</td>
-                      <td class="">A</td>
-                    </tr>
-                    <tr class="odd">
-                      <td class=" sorting_1">Gecko</td>
-                      <td class="">Netscape 7.2</td>
-                      <td class="">Win 95+ / Mac OS 8.6-9.2</td>
-                      <td class="">1.7</td>
-                      <td class="">A</td>
-                    </tr>
-                    <tr class="even">
-                      <td class=" sorting_1">Gecko</td>
-                      <td class="">Netscape Browser 8</td>
-                      <td class="">Win 98SE+</td>
-                      <td class="">1.7</td>
-                      <td class="">A</td>
-                    </tr>
-                    <tr class="odd">
-                      <td class=" sorting_1">Gecko</td>
-                      <td class="">Netscape Navigator 9</td>
-                      <td class="">Win 98+ / OSX.2+</td>
-                      <td class="">1.8</td>
-                      <td class="">A</td>
-                    </tr>
-                    <tr class="even">
-                      <td class=" sorting_1">Gecko</td>
-                      <td class="">Mozilla 1.0</td>
-                      <td class="">Win 95+ / OSX.1+</td>
-                      <td class="">1</td>
-                      <td class="">A</td>
-                    </tr>
+                    <tbody role="alert" aria-live="polite" aria-relevant="all" id="tbody_cat">
+
                     </tbody>
                   </table>
                 </div>
+                <script>
+
+                    $.get("http://127.0.0.1:8000/api/getCategory", function (data) {
+                        var myBooks = data;
+
+                        var col = [];
+                        for (var i = 0; i < myBooks.length; i++) {
+                            for (var key in myBooks[i]) {
+                                if (col.indexOf(key) === -1) {
+                                    col.push(key);
+                                }
+                            }
+                        }
+
+                        var table = document.getElementById("tbody_cat");
+                        for (var i = 0; i < myBooks.length; i++) {
+                            tr = table.insertRow(-1);
+                            for (var j = 0; j < col.length; j++) {
+                                var tabCell = tr.insertCell(-1);
+                                tabCell.innerHTML = myBooks[i][col[j]];
+                            }
+                        }
+
+                        $('[data-ride="datatables"]').each(function () {
+                            var categoryTable = document.getElementById("categoryTable");
+                            var oTable = $(categoryTable).dataTable({
+                                "bProcessing": true,
+                                "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
+                                "sPaginationType": "full_numbers",
+                                "aoColumns": [
+                                    {"mData": "id"},
+                                    {"mData": "title"},
+                                    {"mData": "type"}
+                                ]
+                            });
+                        });
+                    });
+                </script>
               </section>
             </section>
           </section>
@@ -139,7 +107,7 @@
   <!-- datatables -->
 <script src="js/datatables/jquery.dataTables.min.js"></script>
 <script src="js/datatables/jquery.csv-0.71.min.js"></script>
-<script src="js/datatables/demo.js"></script>
+<!--<script src="js/datatables/demo.js"></script>-->
   <script src="js/app.plugin.js"></script>
 </body>
 </html>

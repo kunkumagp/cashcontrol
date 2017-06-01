@@ -1,25 +1,26 @@
 <script>
-    if(localStorage.getItem("page")==="index"){
-        $( '#index' ).addClass( 'active' );
-    } else if(localStorage.getItem("page")==="category"){
-        $( '#category' ).addClass( 'active' );
-    } else if(localStorage.getItem("page")==="income"){
-        $( '#income' ).addClass( 'active' );
-    } else if(localStorage.getItem("page")==="expenses"){
-        $( '#expenses' ).addClass( 'active' );
-    } else if(localStorage.getItem("page")==="bills"){
-        $( '#bills' ).addClass( 'active' );
-    } else if(localStorage.getItem("page")==="loan"){
-        $( '#loan' ).addClass( 'active' );
-    } else if(localStorage.getItem("page")==="transfers"){
-        $( '#transfers' ).addClass( 'active' );
-    } else if(localStorage.getItem("page")==="reports"){
-        $( '#reports' ).addClass( 'active' );
+    if (localStorage.getItem("page") === "index") {
+        $('#index').addClass('active');
+    } else if (localStorage.getItem("page") === "category") {
+        $('#category').addClass('active');
+    } else if (localStorage.getItem("page") === "income") {
+        $('#income').addClass('active');
+    } else if (localStorage.getItem("page") === "expenses") {
+        $('#expenses').addClass('active');
+    } else if (localStorage.getItem("page") === "bills") {
+        $('#bills').addClass('active');
+    } else if (localStorage.getItem("page") === "loan") {
+        $('#loan').addClass('active');
+    } else if (localStorage.getItem("page") === "transfers") {
+        $('#transfers').addClass('active');
+    } else if (localStorage.getItem("page") === "reports") {
+        $('#reports').addClass('active');
     }
 </script>
 <section class="vbox">
     <section class="w-f scrollable">
-        <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="10px" data-railOpacity="0.2">
+        <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="10px"
+             data-railOpacity="0.2">
             <!-- nav -->
             <nav class="nav-primary hidden-xs">
                 <ul class="nav nav-main" data-ride="collapse">
@@ -58,6 +59,54 @@
                             <span class="font-bold">Bills</span>
                         </a>
                     </li>
+
+                    <li id="loan">
+                        <a href="#" class="auto">
+                        <span class="pull-right text-muted">
+                          <i class="i i-circle-sm-o text"></i>
+                          <i class="i i-circle-sm text-active"></i>
+                        </span>
+                            <i class="fa fa-archive">
+                            </i>
+                            <span class="font-bold">Money Store</span>
+                        </a>
+                        <ul class="nav dk">
+                            <li>
+                                <a href="layout-color.html" class="auto">
+                                    <i class="fa fa-credit-card-alt"></i>
+
+                                    <span>Wallet</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="auto">
+                                    <span class="pull-right text-muted">
+                                      <i class="i i-circle-sm-o text"></i>
+                                      <i class="i i-circle-sm text-active"></i>
+                                    </span>
+                                    <i class="fa fa-university"></i>
+
+                                    <span>Bank</span>
+                                </a>
+                                <ul class="nav dk">
+                                    <li>
+                                        <a href="layout-color.html" class="auto">
+                                            <i class="fa fa-user "></i>
+
+                                            <span>Personal</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="layout-hbox.html" class="auto">
+                                            <i class="fa fa-building"></i>
+
+                                            <span>Fixed</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                     <li id="loan">
                         <a href="#" class="auto">
                         <span class="pull-right text-muted">
@@ -69,14 +118,14 @@
                             <span class="font-bold">Loan</span>
                         </a>
                         <ul class="nav dk">
-                            <li >
+                            <li>
                                 <a href="layout-color.html" class="auto">
                                     <i class="fa fa-arrow-circle-down"></i>
 
                                     <span>Taken</span>
                                 </a>
                             </li>
-                            <li >
+                            <li>
                                 <a href="layout-hbox.html" class="auto">
                                     <i class="fa fa-arrow-circle-up"></i>
 
@@ -85,25 +134,26 @@
                             </li>
                         </ul>
                     </li>
+
                     <li id="transfers">
                         <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
                           <i class="i i-circle-sm text-active"></i>
                         </span>
-                            <i class="fa fa-university">
+                            <i class="fa fa-exchange">
                             </i>
                             <span class="font-bold">Transfer</span>
                         </a>
                         <ul class="nav dk">
-                            <li >
+                            <li>
                                 <a href="buttons.html" class="auto">
                                     <i class="fa fa-arrow-circle-down"></i>
 
                                     <span>Income</span>
                                 </a>
                             </li>
-                            <li >
+                            <li>
                                 <a href="icons.html" class="auto">
                                     <i class="fa fa-arrow-circle-up"></i>
 

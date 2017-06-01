@@ -16,6 +16,9 @@
                 } else {
                     console.log(data['name']);
                     document.getElementById("name").innerHTML = data['name'];
+                    if(data['name']===""){
+                        window.location.replace('../index.html');
+                    }
                 }
 
             });
