@@ -10,202 +10,195 @@
     });
 
 
-
 </script>
+
 <link rel="stylesheet" href="js/datatables/datatables.css" type="text/css"/>
 <div id="header"></div>
 
 </head>
 <body class="">
-  <section class="vbox">
+<section class="vbox">
     <div id="top"></div>
     <section>
-      <section class="hbox stretch">
-        <!-- .aside -->
-        <aside class="bg-black aside-md hidden-print" id="nav">
-          <div id="left"></div>
-        </aside>
-        <!-- /.aside -->
-        <section id="content">
-          <section class="vbox">
-            <section class="scrollable padder">
-              <div class="m-b-md">
-                <h3 class="m-b-none">Category</h3>
-                <small><a href="index.html">Home</a> / <a href="category.html">Category</a> / <span
-                        class="m-t-xs text-success">Add New Category</span></small>
-              </div>
-              <section class="panel panel-default">
-                <header class="panel-heading font-bold">
-                  Add New Category
-                </header>
-                <div class="panel-body">
-                  <div id="successmsg" class="alert alert-success hidden">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <i class="fa fa-ok-sign"></i>
-                    <strong>Well done!</strong> You successfully read
-                    <a href="#" class="alert-link">this important alert message</a>.
-                  </div>
-                  <form class="form-horizontal" method="post" name="addCategories" id="addCategories" >
+        <section class="hbox stretch">
+            <!-- .aside -->
+            <aside class="bg-black aside-md hidden-print" id="nav">
+                <div id="left"></div>
+            </aside>
+            <!-- /.aside -->
+            <section id="content">
+                <section class="vbox">
+                    <section class="scrollable padder">
+                        <div class="m-b-md">
+                            <h3 class="m-b-none">Category</h3>
+                            <small><a href="index.html">Home</a> / <a href="category.html">Category</a> / <span
+                                    class="m-t-xs text-success">Add New Category</span></small>
+                        </div>
+                        <section class="panel panel-default">
+                            <header class="panel-heading font-bold">
+                                Add New Category
+                            </header>
+                            <div class="panel-body">
+                                <div id="successmsg" class="alert alert-success hidden">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <i class="fa fa-ok-sign"></i>
+                                    <strong>Well done!</strong> You successfully read
+                                    <a href="#" class="alert-link">this important alert message</a>.
+                                </div>
+                                <form class="form-horizontal" method="post" name="addCategories" id="addCategories">
 
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label">Category Title</label>
-                      <div class="col-sm-10">
-                        <input type="text" name="catTitle" class="form-control">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label">Category Type</label>
-                      <div class="col-sm-10">
-                        <select name="catType" class="form-control m-b">
-                          <option value="income">Income</option>
-                          <option value="expenses">Expenses</option>
-                          <option value="bill">Bills</option>
-                        </select>
-                      </div>
-                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Category Title</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="catTitle" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Category Type</label>
+                                        <div class="col-sm-10">
+                                            <select name="catType" class="form-control m-b">
+                                                <option value="income">Income</option>
+                                                <option value="expenses">Expenses</option>
+                                                <option value="bill">Bills</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-                    <div class="line line-dashed b-b line-lg pull-in"></div>
-                    <div class="form-group">
-                      <div class="col-sm-4 col-sm-offset-2">
-                        <button type="reset" id="resetbtn" class="btn btn-default">Cancel</button>
-                        <button type="submit" class="btn btn-primary" id="btnSubmit">Add New
-                          Category
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <div class="table-responsive">
+                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button type="reset" id="resetbtn" class="btn btn-default">Cancel</button>
+                                            <button type="submit" class="btn btn-primary" id="btnSubmit">Add New
+                                                Category
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--<div class="table-responsive">-->
 
-                  <table class="table table-striped m-b-none" data-ride="datatables">
-                    <thead>
-                    <tr>
-                      <th>Rendering engine</th>
-                      <th>Browser</th>
-                      <th>Platform(s)</th>
-                      <th>Engine version</th>
-                      <th>CSS grade</th>
-                    </tr>
-                    </thead>
-                    <tbody role="alert" aria-live="polite" aria-relevant="all">
-                    <tr class="odd">
-                      <td>Gecko</td>
-                      <td>Firefox 1.0</td>
-                      <td>Win 98+ / OSX.2+</td>
-                      <td>1.7</td>
-                      <td>A</td>
-                    </tr>
-                    <tr class="even">
-                      <td>Gecko</td>
-                      <td>Firefox 1.5</td>
-                      <td>Win 98+ / OSX.2+</td>
-                      <td>1.8</td>
-                      <td>A</td>
-                    </tr>
-                    <tr class="odd">
-                      <td>Gecko</td>
-                      <td>Firefox 2.0</td>
-                      <td>Win 98+ / OSX.2+</td>
-                      <td>1.8</td>
-                      <td>A</td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
+                            <!--<table class="table table-striped m-b-none" data-ride="datatables">-->
+                            <!--<thead>-->
+                            <!--<tr>-->
+                            <!--<th>Rendering engine</th>-->
+                            <!--<th>Browser</th>-->
+                            <!--<th>Platform(s)</th>-->
+                            <!--<th>Engine version</th>-->
+                            <!--<th>CSS grade</th>-->
+                            <!--</tr>-->
+                            <!--</thead>-->
+                            <!--<tbody role="alert" aria-live="polite" aria-relevant="all">-->
+                            <!--<tr class="odd">-->
+                            <!--<td>Gecko</td>-->
+                            <!--<td>Firefox 1.0</td>-->
+                            <!--<td>Win 98+ / OSX.2+</td>-->
+                            <!--<td>1.7</td>-->
+                            <!--<td>A</td>-->
+                            <!--</tr>-->
+                            <!--<tr class="even">-->
+                            <!--<td>Gecko</td>-->
+                            <!--<td>Firefox 1.5</td>-->
+                            <!--<td>Win 98+ / OSX.2+</td>-->
+                            <!--<td>1.8</td>-->
+                            <!--<td>A</td>-->
+                            <!--</tr>-->
+                            <!--<tr class="odd">-->
+                            <!--<td>Gecko</td>-->
+                            <!--<td>Firefox 2.0</td>-->
+                            <!--<td>Win 98+ / OSX.2+</td>-->
+                            <!--<td>1.8</td>-->
+                            <!--<td>A</td>-->
+                            <!--</tr>-->
+                            <!--</tbody>-->
+                            <!--</table>-->
+                            <!--</div>-->
 
-                <div class="table-responsive" id="showData">
+                            <div class="table-responsive">
 
+                                <table class="table table-striped m-b-none" data-ride="datatables" id="categoryTable">
+                                    <thead>
+                                    <tr>
+                                        <th>Rendering engine</th>
+                                        <th>Browser</th>
+                                        <th>Platform(s)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                    <tr>
+                                        <td>Gecko</td>
+                                        <td>Firefox 1.0</td>
+                                        <td>Win 98+ / OSX.2+</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gecko</td>
+                                        <td>Firefox 1.5</td>
+                                        <td>Win 98+ / OSX.2+</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gecko</td>
+                                        <td>Firefox 2.0</td>
+                                        <td>Win 98+ / OSX.2+</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <script>
+                                $.get("http://127.0.0.1:8000/api/getCategory", function (data) {
+                                    var myBooks = data;
 
+                                    var col = [];
+                                    for (var i = 0; i < myBooks.length; i++) {
+                                        for (var key in myBooks[i]) {
+                                            if (col.indexOf(key) === -1) {
+                                                col.push(key);
+                                            }
+                                        }
+                                    }
 
-                </div>
-                <script>
-                    $.get("http://127.0.0.1:8000/api/getCategory", function(data){
-                        console.log(data);
-                        var myBooks = data;
-
-
-
-                        // EXTRACT VALUE FOR HTML HEADER.
-                        // ('Book ID', 'Book Name', 'Category' and 'Price')
-                        var col = [];
-                        for (var i = 0; i < myBooks.length; i++) {
-                            for (var key in myBooks[i]) {
-                                if (col.indexOf(key) === -1) {
-                                    col.push(key);
-                                }
-                            }
-                        }
-
-                        // CREATE DYNAMIC TABLE.
-                        var table = document.createElement("table");
-
-                        table.setAttribute("class", "table table-striped m-b-none");
-                        table.setAttribute("id", "myTable");
-                        table.setAttribute('data-ride', 'datatables'); // sets
-
-                        var header = table.createTHead();
-
-                        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-
-                        var tr = header.insertRow(-1);                   // TABLE ROW.
-
-//                        for (var i = 0; i < col.length; i++) {
-//
-//                        }
-
-                        var th = document.createElement("th");      // TABLE HEADER.
-//                            var td = document.createElement("td");      // TABLE HEADER.
-
-                        th.innerHTML = "a";
-                        tr.appendChild(th);
-                        var th = document.createElement("th");      // TABLE HEADER.
-
-                        th.innerHTML = "b";
-                        tr.appendChild(th);
-
-                        var th = document.createElement("th");      // TABLE HEADER.
-
-                        th.innerHTML = "c";
-                        tr.appendChild(th);
-
-                        var tableBody = document.createElement('TBODY');
-                        table.appendChild(tableBody);
-
-                        // ADD JSON DATA TO THE TABLE AS ROWS.
-                        for (var i = 0; i < myBooks.length; i++) {
-
-                            tr = tableBody.insertRow(-1);
-
-
-                            for (var j = 0; j < col.length; j++) {
-                                var tabCell = tr.insertCell(-1);
-                                tabCell.innerHTML = myBooks[i][col[j]];
-                            }
-                        }
-
-                        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-                        var divContainer = document.getElementById("showData");
-                        divContainer.innerHTML = "";
-                        divContainer.appendChild(table);
-                    });
-                </script>
-              </section>
+                                    var table = document.getElementById("categoryTable");
+                                    for (var i = 0; i < myBooks.length; i++) {
+                                        tr = table.insertRow(-1);
+                                        for (var j = 0; j < col.length; j++) {
+                                            var tabCell = tr.insertCell(-1);
+                                            tabCell.innerHTML = myBooks[i][col[j]];
+                                        }
+                                    }
+                                    console.log(1);
+//                                        $.getScript( "js/datatables/demo.js", function() {});
+                                    $('[data-ride="datatables"]').each(function () {
+                                        console.log(2);
+                                        var oTable = $(this).dataTable({
+                                            "bProcessing": true,
+                                            // "sAjaxSource": "js/datatables/datatable.json",
+                                            "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
+                                            "sPaginationType": "full_numbers",
+                                            "aoColumns": [
+                                                {"mData": "engine"},
+                                                {"mData": "browser"},
+                                                {"mData": "platform"}
+                                            ]
+                                        });
+                                    });
+                                });
+                            </script>
+                            <!--[{"id":17,"title":"test","type":"income"},{"id":18,"title":"test2","type":"income"}]-->
+                        </section>
+                    </section>
+                </section>
             </section>
-          </section>
         </section>
-      </section>
     </section>
-  </section>
-  <script src="js/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="js/bootstrap.js"></script>
-  <!-- App -->
-  <script src="js/app.js"></script>  
-  <script src="js/slimscroll/jquery.slimscroll.min.js"></script>
-  <!-- datatables -->
+</section>
+<script src="js/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="js/bootstrap.js"></script>
+<!-- App -->
+<script src="js/app.js"></script>
+<script src="js/slimscroll/jquery.slimscroll.min.js"></script>
+<!-- datatables -->
 <script src="js/datatables/jquery.dataTables.min.js"></script>
 <script src="js/datatables/jquery.csv-0.71.min.js"></script>
-<script src="js/datatables/demo.js"></script>
-  <script src="js/app.plugin.js"></script>
+<!--<script src="js/datatables/demo.js"></script>-->
+<script src="js/app.plugin.js"></script>
 </body>
 </html>
