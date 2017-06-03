@@ -1,6 +1,12 @@
 .vbox > section, .vbox > footer{
     width: 100%;
 }
+.vbox{
+    height: 93vh !important;
+}
+.w-f{
+    overflow: hidden !important;
+}
 @media (max-width:600px){
     .m-b-md{
         margin-top: 60px;
@@ -11,4 +17,8 @@
     .vbox > section, .vbox > footer{
         width: 100%;
     }
+    .vbox{
+        height: 93vh !important;
+    }
+
 }
