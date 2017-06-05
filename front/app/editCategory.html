@@ -8,16 +8,12 @@
         $("#top").load("inc/top.html");
         $("#left").load("inc/left_nav.html");
     });
-
-
-
-
 </script>
 
 <link rel="stylesheet" href="js/datatables/datatables.css" type="text/css"/>
 <div id="header"></div>
 <style>
-    .vbox{
+    .vbox {
         height: 93vh !important;
     }
 </style>
@@ -51,7 +47,7 @@
                                     <strong>Well done!</strong> You successfully read
                                     <a href="#" class="alert-link">this important alert message</a>.
                                 </div>
-                                <form class="form-horizontal" method="get" name="addCategories" id="addCategories">
+                                <form class="form-horizontal" method="get" name="editCategories" id="editCategories">
                                     <div class="alert alert-success hidden" id="successmsg">
                                         <button type="button" class="close" data-dismiss="alert">×</button>
                                         <i class="fa fa-ok-sign"></i>
@@ -61,13 +57,13 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Category Title</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="catTitle" class="form-control">
+                                            <input type="text" id="catTitle" name="catTitle" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Category Type</label>
                                         <div class="col-sm-10">
-                                            <select name="catType" class="form-control m-b">
+                                            <select name="catType" id="catType" class="form-control m-b">
                                                 <option value="income">Income</option>
                                                 <option value="expenses">Expenses</option>
                                                 <option value="bill">Bills</option>
@@ -79,29 +75,12 @@
                                     <div class="form-group">
                                         <div class="col-sm-4 col-sm-offset-2">
                                             <button type="reset" id="resetbtn" class="btn btn-default">Cancel</button>
-                                            <button type="submit" class="btn btn-primary" id="btnSubmit">Add New
-                                                Category
+                                            <button type="submit" class="btn btn-primary" id="btnSubmit">Edit Category
                                             </button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-                            <div class="table-responsive">
-
-                                <table class="table table-striped m-b-none" data-ride="datatables" id="categoryTable">
-                                    <thead>
-                                    <tr class="">
-                                        <th>ID</th>
-                                        <th>Title</th>
-                                        <th>Type</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody role="alert" aria-live="polite" aria-relevant="all" id="tbody_cat">
-
-                                    </tbody>
-                                </table>
-                            </div>
-
                         </section>
                     </section>
                 </section>
@@ -122,60 +101,43 @@
 <script src="js/app.plugin.js"></script>
 <script>
 
+    var url = document.location.href,
+        params = url.split('?')[1].split('&'),
+        data = {}, tmp;
+    for (var i = 0, l = params.length; i < l; i++) {
+        tmp = params[i].split('=');
+        data[tmp[0]] = tmp[1];
+    }
+    var id = data.id;
+    $.get("http://127.0.0.1:8000/api/editCategory/"+id, function (data) {
+        document.getElementById('catTitle').value = data.title;
+        document.getElementById('catType').value = data.type;
+    });
+
+    var str = document.getElementById('catTitle').value;
+    var res = str.replace("%20", " ");
+    document.getElementById('catTitle').value = res;
+
+    var catType = document.getElementById('catType').value;
+
     $(document).ready(function () {
 
-        $( "form" ).on( "submit", function( event ) {
+        $("form").on("submit", function (event) {
             event.preventDefault();
-            var e =  $( this ).serialize() ;
+            var e = $(this).serialize();
 
 
-            $.post("http://127.0.0.1:8000/api/addCategory",
+            $.post("http://127.0.0.1:8000/api/postEditCategory/"+id,
                 e,
                 function (data) {
-                    if(data==="success"){
-                        location.reload();
+                    if (data === "success") {
                         $("#successmsg").removeClass(" hidden");
-                        document.getElementById("addCategories").reset();
                     }
                 });
         });
     });
 
-    $.get("http://127.0.0.1:8000/api/getCategory", function (data) {
-        var myBooks = data;
 
-        var col = [];
-        for (var i = 0; i < myBooks.length; i++) {
-            for (var key in myBooks[i]) {
-                if (col.indexOf(key) === -1) {
-                    col.push(key);
-                }
-            }
-        }
-
-        var table = document.getElementById("tbody_cat");
-        for (var i = 0; i < myBooks.length; i++) {
-            tr = table.insertRow(-1);
-            for (var j = 0; j < col.length; j++) {
-                var tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = myBooks[i][col[j]];
-            }
-        }
-
-        $('[data-ride="datatables"]').each(function () {
-            var categoryTable = document.getElementById("categoryTable");
-            var oTable = $(categoryTable).dataTable({
-                "bProcessing": true,
-                "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
-                "sPaginationType": "full_numbers",
-                "aoColumns": [
-                    {"mData": "id"},
-                    {"mData": "title"},
-                    {"mData": "type"}
-                ]
-            });
-        });
-    });
 </script>
 </body>
 </html>

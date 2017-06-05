@@ -46,3 +46,19 @@ Route::get('/getCategory', [
     'as' => 'getCategory'
 ]);
 
+Route::get('/editCategory/{id}', [
+    'uses' => 'CategoryController@editCategory',
+    'as' => 'editCategory'
+]);
+
+
+Route::post('/postEditCategory/{id}', [
+    'uses' => 'CategoryController@postEditCategory',
+    'as' => 'postEditCategory'
+]);
+
+Route::post('/deleteCat/{id}', [
+    'uses' => 'CategoryController@deleteCat',
+    'as' => 'deleteCat'
+]);
+

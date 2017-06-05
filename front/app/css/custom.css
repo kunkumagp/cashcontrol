@@ -7,6 +7,10 @@
 .w-f{
     overflow: hidden !important;
 }
+.actionstyle{
+    float: right;
+    margin: 0px 10px;
+}
 @media (max-width:600px){
     .m-b-md{
         margin-top: 60px;
