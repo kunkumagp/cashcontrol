@@ -46,6 +46,12 @@ Route::get('/getCategory', [
     'as' => 'getCategory'
 ]);
 
+Route::get('/getCategoryByType/{data}', [
+    'uses' => 'CategoryController@getCategoryByType',
+    'as' => 'getCategoryByType'
+]);
+
+
 Route::get('/editCategory/{id}', [
     'uses' => 'CategoryController@editCategory',
     'as' => 'editCategory'
@@ -61,4 +67,33 @@ Route::post('/deleteCat/{id}', [
     'uses' => 'CategoryController@deleteCat',
     'as' => 'deleteCat'
 ]);
+
+
+
+Route::post('/addIncome', [
+    'uses' => 'IncomeController@createIncome',
+    'as' => 'addIncome'
+]);
+
+Route::get('/getIncome', [
+    'uses' => 'IncomeController@getIncome',
+    'as' => 'getIncome'
+]);
+
+Route::get('/editIncome/{id}', [
+    'uses' => 'IncomeController@editIncome',
+    'as' => 'editIncome'
+]);
+
+
+Route::post('/postEditIncome/{id}', [
+    'uses' => 'IncomeController@postEditIncome',
+    'as' => 'postEditIncome'
+]);
+
+Route::post('/deleteIncome/{id}', [
+    'uses' => 'IncomeController@deleteIncome',
+    'as' => 'deleteIncome'
+]);
+
 
