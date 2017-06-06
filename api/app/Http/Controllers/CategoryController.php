@@ -9,9 +9,9 @@ class CategoryController extends Controller
 {
     public function createCategory(Request $request){
         $category = new Category([
-            'title' => $request->input('catTitle'),
-            'type' => $request->input('catType'),
-            'status' => "active"
+            'catTitle' => $request->input('catTitle'),
+            'catType' => $request->input('catType'),
+            'catStatus' => "active"
         ]);
         $category->save();
 
@@ -19,10 +19,21 @@ class CategoryController extends Controller
     }
 
     public function getCategory() {
-//        $categories = Category::all('id','title','type');
         $categories = Category::select('id', 'title', 'type')->where('status', 'active')->get();
 
-        return $categories;}
+        return $categories;
+    }
+    public function getCategoryByIncome($id) {
+        $categories = Category::select('title')->where('status', 'active')->where('id', $id)->get();
+
+        return $categories;
+    }
+
+
+    public function getCategoryByType($data) {
+        $categories = Category::select('id', 'title')->where('status', 'active')->where('type', $data)->get();
+        return $categories;
+    }
 
     public function editCategory($id){
         $categories = Category::all('id','title','type')->where('id', $id)->first();

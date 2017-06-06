@@ -46,6 +46,11 @@ Route::get('/getCategory', [
     'as' => 'getCategory'
 ]);
 
+Route::get('/getCategoryByIncome/{id}', [
+    'uses' => 'CategoryController@getCategoryByIncome',
+    'as' => 'getCategoryByIncome'
+]);
+
 Route::get('/getCategoryByType/{data}', [
     'uses' => 'CategoryController@getCategoryByType',
     'as' => 'getCategoryByType'
@@ -79,6 +84,13 @@ Route::get('/getIncome', [
     'uses' => 'IncomeController@getIncome',
     'as' => 'getIncome'
 ]);
+
+Route::get('/totleIncome', [
+    'uses' => 'IncomeController@totleIncome',
+    'as' => 'totleIncome'
+]);
+
+
 
 Route::get('/editIncome/{id}', [
     'uses' => 'IncomeController@editIncome',

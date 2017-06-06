@@ -54,9 +54,11 @@
                   </table>
                 </div>
                 <script>
-
                     $.get("http://127.0.0.1:8000/api/getCategory", function (data) {
+                        console.log(243524);
+
                         var myBooks = data;
+                        console.log(data);
 
                         var col = [];
                         for (var i = 0; i < myBooks.length; i++) {
@@ -76,7 +78,7 @@
 
                             }
                             var id=myBooks[i]['id'];
-                            tabCell.innerHTML += '<button onclick="deleteCat('+id+')" class="actionstyle btn btn-danger">Delete</button><button onclick="editCat('+id+')" class="actionstyle btn btn-success">Edit</a>';
+                            tabCell.innerHTML += '<button onclick="deleteCat('+id+')" class="actionstyle btn btn-danger">Delete</button><button onclick="editCat('+id+')" class="actionstyle btn btn-primary">Edit</a>';
                         }
 
                         $('[data-ride="datatables"]').each(function () {

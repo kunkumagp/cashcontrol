@@ -19,7 +19,7 @@ class CreateForeignKeys extends Migration
 
         Schema::table('incomes', function (Blueprint $t){
             $t
-                -> foreign('categoryId')
+                -> foreign('category_id')
                 -> references('id')
                 -> on('categories')
                 -> onUpdate('cascade')
@@ -33,7 +33,7 @@ class CreateForeignKeys extends Migration
             $t -> dropForeign('auth_sessions_user_id_foreign');
         });
         Schema::table('incomes', function (Blueprint $t){
-            $t -> dropForeign('incomes_categoryId_foreign');
+            $t -> dropForeign('incomes_category_id_foreign');
         });
     }
 }
