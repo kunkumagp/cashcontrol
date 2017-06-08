@@ -5,7 +5,7 @@
     } else {
         var token = localStorage.getItem("token");
 
-        $.post("http://127.0.0.1:8000/api/checkuser",
+        $.post(api+"checkuser",
             {
                 token: token
             },
@@ -15,9 +15,17 @@
                     window.location.replace('index.html');
                 } else {
                     document.getElementById("name").innerHTML = data['name'];
+
                 }
 
             });
+
+    }
+
+    if (!localStorage.getItem("api")) {
+        $.get("../env.json", function (envJson) {
+            localStorage.setItem('api', envJson.api);
+        });
 
     }
 </script>

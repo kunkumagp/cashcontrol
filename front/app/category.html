@@ -8,6 +8,7 @@
         $("#top").load("inc/top.html");
         $("#left").load("inc/left_nav.html");
     });
+    var api = localStorage.getItem("api");
 
 
 
@@ -54,7 +55,7 @@
                   </table>
                 </div>
                 <script>
-                    $.get("http://127.0.0.1:8000/api/getCategory", function (data) {
+                    $.get(api+"getCategory", function (data) {
                         console.log(243524);
 
                         var myBooks = data;
@@ -97,12 +98,12 @@
                     });
 
                     function editCat(id){
-                        $.get("http://127.0.0.1:8000/api/editCategory/"+id, function (data) {
+                        $.get(api+"editCategory/"+id, function (data) {
                             window.location.replace("editCategory.html?id="+data['id']);
                         });
                     }
                     function deleteCat(id){
-                        $.post("http://127.0.0.1:8000/api/deleteCat/"+id, function () {
+                        $.post(api+"deleteCat/"+id, function () {
                             window.location.replace("category.html");
                         });
                     }

@@ -30,7 +30,7 @@
                         <div class="m-b-md">
                             <h3 class="m-b-none">Income</h3>
                             <small><a href="index.html">Home</a> / <a href="income.html">Income</a> / <span
-                                    class="m-t-xs text-success">Add New Income</span></small>
+                                    class="m-t-xs text-success">Edit Income</span></small>
                         </div>
                         <section class="panel panel-default">
                             <header class="panel-heading font-bold">
@@ -40,8 +40,8 @@
                                 <div id="successMsg" class="alert alert-success hidden">
                                     <button type="button" class="close" data-dismiss="alert">×</button>
                                     <i class="fa fa-ok-sign"></i>
-                                    <strong>Congratulations!</strong> You successfully insert
-                                    <a href="#" class="alert-link">a new income record</a>.
+                                    <strong>Congratulations!</strong> You successfully edited
+                                    <a href="#" class="alert-link">this income record</a>.
                                 </div>
                                 <form class="form-horizontal" method="post" name="addIncome" id="addIncome">
 
@@ -82,7 +82,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-4 col-sm-offset-2">
                                             <button type="reset" class="btn btn-default">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">Add New Income</button>
+                                            <button type="submit" class="btn btn-primary">Edit Income</button>
                                         </div>
                                     </div>
                                 </form>
@@ -116,6 +116,7 @@
 <script src="js/chosen/chosen.jquery.min.js"></script>
 <script src="js/app.plugin.js"></script>
 <script>
+
     $.get(api+"getCategoryByType/income",
         function (data) {
             for (var i = 0; i < data.length; i++) {
@@ -128,21 +129,44 @@
             }
         });
 
+    var url = document.location.href,
+        params = url.split('?')[1].split('&'),
+        data = {}, tmp;
+    for (var i = 0, l = params.length; i < l; i++) {
+        tmp = params[i].split('=');
+        data[tmp[0]] = tmp[1];
+    }
+    var id = data.id;
+    $.get(api+"editIncome/"+id, function (data) {
+        document.getElementById('categoryList').value = data.category_id;
+        document.getElementById('incomeTitle').value = data.title;
+        document.getElementById('incomeAmount').value = data.amount;
+        document.getElementById('incomeDescription').value = data.description;
+    });
+
+    var str = document.getElementById('incomeTitle').value;
+    var res = str.replace("%20", " ");
+    document.getElementById('incomeTitle').value = res;
+
     $(document).ready(function () {
+
         $("form").on("submit", function (event) {
             event.preventDefault();
             var e = $(this).serialize();
-            $.post(api+"addIncome/"+1,
+
+
+            $.post(api+"postEditIncome/"+id,
                 e,
                 function (data) {
                 console.log(data);
                     if (data === "success") {
                         $("#successMsg").removeClass(" hidden");
-                        document.getElementById("addIncome").reset();
                     }
-            });
+                });
         });
     });
+
+
 </script>
 </body>
 </html>

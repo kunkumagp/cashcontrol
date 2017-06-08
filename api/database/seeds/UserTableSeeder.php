@@ -17,7 +17,8 @@ class UserTableSeeder extends Seeder
             'updated_at'=>'2017-05-23 08:21:19',
             'name'=>'Kunkuma Geeth',
             'email'=>'kunkumagp@gmail.com',
-            'password'=>'$2y$10$nN9tifXHOFl3Ypk/hRJyXOXixbU9wOP5HA3wqw2pn4F182Kha6dNO'
+            'password'=>'$2y$10$nN9tifXHOFl3Ypk/hRJyXOXixbU9wOP5HA3wqw2pn4F182Kha6dNO',
+            'currency'=>'Rs.'
         ]);
         $user->save();
     }

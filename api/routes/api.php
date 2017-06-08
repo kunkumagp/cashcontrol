@@ -75,19 +75,19 @@ Route::post('/deleteCat/{id}', [
 
 
 
-Route::post('/addIncome', [
+Route::post('/addIncome/{id}', [
     'uses' => 'IncomeController@createIncome',
     'as' => 'addIncome'
 ]);
 
-Route::get('/getIncome', [
+Route::get('/getIncome/{id}', [
     'uses' => 'IncomeController@getIncome',
     'as' => 'getIncome'
 ]);
 
-Route::get('/totleIncome', [
-    'uses' => 'IncomeController@totleIncome',
-    'as' => 'totleIncome'
+Route::get('/totalIncome', [
+    'uses' => 'IncomeController@totalIncome',
+    'as' => 'totalIncome'
 ]);
 
 

@@ -2,6 +2,7 @@
     if(localStorage.getItem("token")!==""){
         window.location.replace('app/index.html');
     }
+    var api = localStorage.getItem("api");
 </script>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +31,7 @@
             $("button").click(function () {
                 var formData = $("#login_frm").serializeArray();
 
-                $.post("http://127.0.0.1:8000/api/login",
+                $.post(api+"login",
                     formData,
                     function (data) {
                     if(data==='error'){
@@ -39,6 +40,8 @@
                     } else {
 
                         localStorage.setItem("token", data['token']);
+                        localStorage.setItem('cur', data['user']['currency']);
+                        localStorage.setItem('userId', data['user']['id']);
                         if(localStorage.getItem("token")!==""){
                             window.location.replace('app/index.html');
                         }

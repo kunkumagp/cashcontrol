@@ -24,6 +24,12 @@ class CreateForeignKeys extends Migration
                 -> on('categories')
                 -> onUpdate('cascade')
                 -> onDelete('cascade');
+            $t
+                -> foreign('user_id')
+                -> references('id')
+                -> on('users')
+                -> onUpdate('cascade')
+                -> onDelete('cascade');
         });
     }
 
@@ -34,6 +40,7 @@ class CreateForeignKeys extends Migration
         });
         Schema::table('incomes', function (Blueprint $t){
             $t -> dropForeign('incomes_category_id_foreign');
+            $t -> dropForeign('incomes_user_id_foreign');
         });
     }
 }

@@ -8,6 +8,7 @@
         $("#top").load("inc/top.html");
         $("#left").load("inc/left_nav.html");
     });
+    var api = localStorage.getItem("api");
 
 
 
@@ -121,7 +122,7 @@
         $( "form" ).on( "submit", function( event ) {
             event.preventDefault();
             var e =  $( this ).serialize() ;
-            $.post("http://127.0.0.1:8000/api/addCategory",
+            $.post(api+"addCategory",
                 e,
                 function (data) {
                 if(data==="success"){
@@ -133,7 +134,7 @@
         });
     });
 
-    $.get("http://127.0.0.1:8000/api/getCategory", function (data) {
+    $.get(api+"getCategory", function (data) {
         var myBooks = data;
 
         var col = [];

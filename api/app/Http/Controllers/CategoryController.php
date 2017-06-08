@@ -41,6 +41,7 @@ class CategoryController extends Controller
         return $categories;
     }
 
+
     public function postEditCategory(Request $request,$id){
         $category = Category::find($id);
 

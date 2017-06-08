@@ -8,6 +8,7 @@
         $("#top").load("inc/top.html");
         $("#left").load("inc/left_nav.html");
     });
+    var api = localStorage.getItem("api");
 </script>
 
 <link rel="stylesheet" href="js/datatables/datatables.css" type="text/css"/>
@@ -41,19 +42,13 @@
                                 Add New Category
                             </header>
                             <div class="panel-body">
-                                <div id="successmsg" class="alert alert-success hidden">
+                                <div id="successMsg" class="alert alert-success hidden">
                                     <button type="button" class="close" data-dismiss="alert">×</button>
                                     <i class="fa fa-ok-sign"></i>
                                     <strong>Well done!</strong> You successfully read
                                     <a href="#" class="alert-link">this important alert message</a>.
                                 </div>
                                 <form class="form-horizontal" method="get" name="editCategories" id="editCategories">
-                                    <div class="alert alert-success hidden" id="successmsg">
-                                        <button type="button" class="close" data-dismiss="alert">×</button>
-                                        <i class="fa fa-ok-sign"></i>
-                                        <strong>Well done!</strong> You successfully read
-                                        <a href="#" class="alert-link">this important alert message</a>.
-                                    </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Category Title</label>
                                         <div class="col-sm-10">
@@ -109,7 +104,7 @@
         data[tmp[0]] = tmp[1];
     }
     var id = data.id;
-    $.get("http://127.0.0.1:8000/api/editCategory/"+id, function (data) {
+    $.get(api+"editCategory/"+id, function (data) {
         document.getElementById('catTitle').value = data.title;
         document.getElementById('catType').value = data.type;
     });
@@ -127,11 +122,11 @@
             var e = $(this).serialize();
 
 
-            $.post("http://127.0.0.1:8000/api/postEditCategory/"+id,
+            $.post(api+"postEditCategory/"+id,
                 e,
                 function (data) {
                     if (data === "success") {
-                        $("#successmsg").removeClass(" hidden");
+                        $("#successMsg").removeClass(" hidden");
                     }
                 });
         });

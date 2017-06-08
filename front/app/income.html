@@ -8,8 +8,9 @@
         $("#top").load("inc/top.html");
         $("#left").load("inc/left_nav.html");
     });
-    $.get("http://127.0.0.1:8000/api/totleIncome", function (data) {
-        console.log(data);
+    var api = localStorage.getItem("api");
+
+    $.get(api + "totleIncome", function (data) {
         document.getElementById("tAmount").innerHTML = data;
     });
 
@@ -43,7 +44,7 @@
                         <section class="panel panel-default">
                             <header class="panel-heading">
                                 <h4>
-                                    <div class="">Total Incomes : $ <strong><span id="tAmount"></span></strong></div>
+                                    <div class="">Total Incomes : <span id="cur"></span> <strong><span id="tAmount"></span></strong></div>
                                 </h4>
                             </header>
                             <div class="table-responsive">
@@ -64,9 +65,7 @@
                             </div>
                             <script>
 
-
-
-                                $.get("http://127.0.0.1:8000/api/getIncome", function (data) {
+                                $.get(api+"getIncome/"+localStorage.getItem("userId"), function (data) {
                                     var myBooks = data;
 
                                     var col = [];
@@ -83,7 +82,6 @@
                                         tr = table.insertRow(-1);
                                         for (var j = 0; j < 4; j++) {
                                             var tabCell = tr.insertCell(-1);
-                                            var cat = myBooks[i]['category_id'];
                                             var cat2 = myBooks[i]['category']['title'];
                                             tabCell.innerHTML = myBooks[i][col[j]];
                                             if (j === 3) {
@@ -112,15 +110,16 @@
                                 });
 
                                 function editIncome(id) {
-                                    $.get("http://127.0.0.1:8000/api/editIncome/" + id, function (data) {
+                                    $.get(api+"editIncome/" + id, function (data) {
                                         window.location.replace("editIncome.html?id=" + data['id']);
                                     });
                                 }
                                 function deleteIncome(id) {
-                                    $.post("http://127.0.0.1:8000/api/deleteIncome/" + id, function () {
+                                    $.post(api+"deleteIncome/" + id, function () {
                                         window.location.replace("income.html");
                                     });
                                 }
+                                document.getElementById("cur").innerHTML = localStorage.getItem('cur');
                             </script>
                         </section>
                     </section>

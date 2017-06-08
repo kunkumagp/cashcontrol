@@ -16,7 +16,7 @@ class UserController extends Controller
         if($userbytoken){
             if ($userbytoken->expiry_time > $currenttime) {
                 $user = DB::table('users')->where('id', $userbytoken->user_id)->first();
-                $array = array_add(['name' => $user->name], 'email', $user->email);
+                $array = array_add(['name' => $user->name,'cur' => $user->currency], 'email', $user->email);
                 if ($user) {
                     return $array;
                 } else {
