@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Bank;
+use Illuminate\Http\Request;
+
+class BankController extends Controller
+{
+   public function getBank() {
+        $banks = Bank::select('id', 'title', 'type', 'acc_no', 'acc_total')->where('status', 'active')->get();
+
+        return $banks;
+    }
+    
+    public function createBank(Request $request, $id)
+    {
+
+        $banks = new Bank([
+            'category_id' => $request->input('categoryList'),
+            'user_id' => $id,
+            'title' => $request->input('bankTitle'),
+            'type' => $request->input('accType'),
+            'acc_no' => $request->input('accNumber'),
+            'acc_total' => "0",
+            'status' => 'active'
+        ]);
+        $banks->save();
+        return "success";
+    }
+}

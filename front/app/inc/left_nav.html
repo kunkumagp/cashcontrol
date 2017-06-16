@@ -9,8 +9,8 @@
         $('#expenses').addClass('active');
     } else if (localStorage.getItem("page") === "bills") {
         $('#bills').addClass('active');
-    }else if (localStorage.getItem("page") === "mStore") {
-        $('#mStore').addClass('active');
+    }else if (localStorage.getItem("page") === "bank") {
+        $('#bank').addClass('active');
     } else if (localStorage.getItem("page") === "loan") {
         $('#loan').addClass('active');
     } else if (localStorage.getItem("page") === "transfers") {
@@ -19,11 +19,6 @@
         $('#reports').addClass('active');
     }
 
-    if (localStorage.getItem("page") === "mStore") {
-        if (localStorage.getItem("subPage") === "wallet") {
-            $('#wallet').addClass('active');
-        }
-    }
 
 </script>
 <section class="vbox">
@@ -47,6 +42,14 @@
                             <span class="font-bold">Category</span>
                         </a>
                     </li>
+                    <li id="bank">
+                        <a href="bank.html" class="auto">
+                            <i class="fa fa-university">
+                            </i>
+                            <span class="font-bold">Bank</span>
+                        </a>
+                    </li>
+                    
                     <li id="income">
                         <a href="income.html" class="auto">
                             <i class="fa fa-money">
@@ -68,68 +71,10 @@
                             <span class="font-bold">Bills</span>
                         </a>
                     </li>
+                    
+                    
 
-                    <li id="mStore">
-                        <a href="#" class="auto">
-                        <span class="pull-right text-muted">
-                          <i class="i i-circle-sm-o text"></i>
-                          <i class="i i-circle-sm text-active"></i>
-                        </span>
-                            <i class="fa fa-archive">
-                            </i>
-                            <span class="font-bold">Money Store</span>
-                        </a>
-                        <ul class="nav dk">
-                            <li id="wallet">
-                                <a href="mStoreWallet.html" class="auto">
-                                    <i class="fa fa-credit-card-alt"></i>
-
-                                    <span>Wallet</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="auto">
-                                    <span class="pull-right text-muted">
-                                      <i class="i i-circle-sm-o text"></i>
-                                      <i class="i i-circle-sm text-active"></i>
-                                    </span>
-                                    <i class="fa fa-university"></i>
-
-                                    <span>Bank</span>
-                                </a>
-                                <ul class="nav dk">
-                                    <li>
-                                        <a href="layout-color.html" class="auto">
-                                            <i class="fa fa-user "></i>
-
-                                            <span>Personal</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="layout-hbox.html" class="auto">
-                                            <i class="fa fa-building"></i>
-
-                                            <span>Fixed</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="layout-color.html" class="auto">
-                                            <i class="fa fa-tachometer"></i>
-
-                                            <span>Locker ( Bank )</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="layout-color.html" class="auto">
-                                    <i class="fa fa-tachometer"></i>
-
-                                    <span>Locker ( Home )</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    
                     <li id="loan">
                         <a href="#" class="auto">
                         <span class="pull-right text-muted">

@@ -85,6 +85,7 @@ Route::get('/getIncome/{id}', [
     'as' => 'getIncome'
 ]);
 
+
 Route::get('/totalIncome/{id}', [
     'uses' => 'IncomeController@totalIncome',
     'as' => 'totalIncome'
@@ -109,3 +110,11 @@ Route::post('/deleteIncome/{id}', [
 ]);
 
 
+Route::get('/getBank/{id}', [
+    'uses' => 'BankController@getBank',
+    'as' => 'getBank'
+]);
+Route::post('/addBank/{id}', [
+    'uses' => 'BankController@createBank',
+    'as' => 'addBank'
+]);

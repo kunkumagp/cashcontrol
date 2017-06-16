@@ -25,7 +25,13 @@ class StoreTableSeeder extends Seeder
         ]);
         DB::table('stores')->insert([
             'id' => '3',
-            'title' => 'Locker',
+            'title' => 'Locker (Home)',
+            'created_at' => date("Y-m-d H:m:s"),
+            'updated_at' => date("Y-m-d H:m:s")
+        ]);
+        DB::table('stores')->insert([
+            'id' => '4',
+            'title' => 'Locker (Bank)',
             'created_at' => date("Y-m-d H:m:s"),
             'updated_at' => date("Y-m-d H:m:s")
         ]);
