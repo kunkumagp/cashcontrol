@@ -40,9 +40,12 @@ class IncomeController extends Controller
         return "success";
     }
 
-    public function totalIncome()
+    public function totalIncome($id)
     {
-        $price = DB::table('incomes')->where('status', 'active')->sum('amount');
+        $price = DB::table('incomes')
+            ->where('status', 'active')
+            ->where('user_id', $id)
+            ->sum('amount');
         $money = number_format($price, 2,".", "," );
         return $money;
     }

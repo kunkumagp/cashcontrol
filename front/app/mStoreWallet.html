@@ -2,7 +2,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script>
-    localStorage.setItem("page", "category");
+    localStorage.setItem("page", "mStore");
+    if(localStorage.getItem("page")==="mStore"){
+        localStorage.setItem("subPage", "wallet");
+    }
     $(function () {
         $("#header").load("inc/header.html");
         $("#top").load("inc/top.html");
@@ -31,13 +34,14 @@
           <section class="vbox">
             <section class="scrollable padder">
               <div class="m-b-md">
-                <div style="float: right;"><a href="addnewcategory.html" class="btn btn-s-md btn-primary">Add New Category</a></div>
-                <h3 class="m-b-none">Category</h3>
-                <small><a href="index.html">Home</a> / <span class="m-t-xs text-success">Category</span> </small>
+                <div style="float: right;"><a href="addNewWalletT.html" class="btn btn-s-md btn-primary">New Transaction</a></div>
+                <h3 class="m-b-none">Wallet</h3>
+                <small><a href="index.html">Home</a> /  <span class="m-t-xs">Money Store</span> / <span
+                        class="m-t-xs text-success">Wallet</span></small>
               </div>
               <section class="panel panel-default">
                 <header class="panel-heading">
-                  <h4><div class="">All Category List</div></h4>
+                  <h4><div class="">Wallet Summery</div></h4>
                 </header>
                 <div class="table-responsive">
 

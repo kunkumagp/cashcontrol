@@ -9,8 +9,9 @@
         $("#left").load("inc/left_nav.html");
     });
     var api = localStorage.getItem("api");
+    var userId = localStorage.getItem("userId");
 
-    $.get(api + "totleIncome", function (data) {
+    $.get(api + "totalIncome/"+userId, function (data) {
         document.getElementById("tAmount").innerHTML = data;
     });
 
@@ -65,7 +66,7 @@
                             </div>
                             <script>
 
-                                $.get(api+"getIncome/"+localStorage.getItem("userId"), function (data) {
+                                $.get(api+"getIncome/"+userId, function (data) {
                                     var myBooks = data;
 
                                     var col = [];

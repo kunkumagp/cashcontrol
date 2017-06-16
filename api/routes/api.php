@@ -85,7 +85,7 @@ Route::get('/getIncome/{id}', [
     'as' => 'getIncome'
 ]);
 
-Route::get('/totalIncome', [
+Route::get('/totalIncome/{id}', [
     'uses' => 'IncomeController@totalIncome',
     'as' => 'totalIncome'
 ]);

@@ -9,6 +9,8 @@
         $('#expenses').addClass('active');
     } else if (localStorage.getItem("page") === "bills") {
         $('#bills').addClass('active');
+    }else if (localStorage.getItem("page") === "mStore") {
+        $('#mStore').addClass('active');
     } else if (localStorage.getItem("page") === "loan") {
         $('#loan').addClass('active');
     } else if (localStorage.getItem("page") === "transfers") {
@@ -16,6 +18,13 @@
     } else if (localStorage.getItem("page") === "reports") {
         $('#reports').addClass('active');
     }
+
+    if (localStorage.getItem("page") === "mStore") {
+        if (localStorage.getItem("subPage") === "wallet") {
+            $('#wallet').addClass('active');
+        }
+    }
+
 </script>
 <section class="vbox">
     <section class="w-f scrollable">
@@ -60,7 +69,7 @@
                         </a>
                     </li>
 
-                    <li id="loan">
+                    <li id="mStore">
                         <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -71,8 +80,8 @@
                             <span class="font-bold">Money Store</span>
                         </a>
                         <ul class="nav dk">
-                            <li>
-                                <a href="layout-color.html" class="auto">
+                            <li id="wallet">
+                                <a href="mStoreWallet.html" class="auto">
                                     <i class="fa fa-credit-card-alt"></i>
 
                                     <span>Wallet</span>
@@ -103,7 +112,21 @@
                                             <span>Fixed</span>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="layout-color.html" class="auto">
+                                            <i class="fa fa-tachometer"></i>
+
+                                            <span>Locker ( Bank )</span>
+                                        </a>
+                                    </li>
                                 </ul>
+                            </li>
+                            <li>
+                                <a href="layout-color.html" class="auto">
+                                    <i class="fa fa-tachometer"></i>
+
+                                    <span>Locker ( Home )</span>
+                                </a>
                             </li>
                         </ul>
                     </li>
