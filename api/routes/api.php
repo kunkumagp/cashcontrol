@@ -118,3 +118,20 @@ Route::post('/addBank/{id}', [
     'uses' => 'BankController@createBank',
     'as' => 'addBank'
 ]);
+
+
+Route::get('/editBank/{id}', [
+    'uses' => 'BankController@editBank',
+    'as' => 'editBank'
+]);
+
+
+Route::post('/postEditBank/{id}', [
+    'uses' => 'BankController@postEditBank',
+    'as' => 'postEditBank'
+]);
+
+Route::post('/deleteBank/{id}', [
+    'uses' => 'BankController@deleteBank',
+    'as' => 'deleteBank'
+]);

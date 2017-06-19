@@ -76,7 +76,7 @@ class IncomeController extends Controller
 
         $incomes = Income::find($id);
 
-        $incomes->status = "inactive";
+        $incomes->status = "delete";
         $incomes->save();
         return "success";
     }

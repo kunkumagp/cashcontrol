@@ -81,7 +81,7 @@
 
                             }
                             var id=myBooks[i]['id'];
-                            tabCell.innerHTML += '<button onclick="deleteCat('+id+')" class="actionstyle btn btn-danger">Delete</button><button onclick="editCat('+id+')" class="actionstyle btn btn-primary">Edit</a>';
+                            tabCell.innerHTML += '<button onclick="deleteBank('+id+')" class="actionstyle btn btn-danger">Delete</button><button onclick="editBank('+id+')" class="actionstyle btn btn-primary">Edit</a>';
                         }
 
                         $('[data-ride="datatables"]').each(function () {
@@ -101,14 +101,14 @@
                         });
                     });
 
-                    function editCat(id){
-                        $.get(api+"editCategory/"+id, function (data) {
-                            window.location.replace("editCategory.html?id="+data['id']);
+                    function editBank(id){
+                        $.get(api+"editBank/"+id, function (data) {
+                            window.location.replace("editBank.html?id="+data['id']);
                         });
                     }
-                    function deleteCat(id){
-                        $.post(api+"deleteCat/"+id, function () {
-                            window.location.replace("category.html");
+                    function deleteBank(id){
+                        $.post(api+"deleteBank/"+id, function () {
+                            window.location.replace("bank.html");
                         });
                     }
                 </script>

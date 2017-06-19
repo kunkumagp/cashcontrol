@@ -5,19 +5,17 @@ namespace App\Http\Controllers;
 use App\Bank;
 use Illuminate\Http\Request;
 
-class BankController extends Controller
-{
-   public function getBank() {
+class BankController extends Controller {
+
+    public function getBank() {
         $banks = Bank::select('id', 'title', 'type', 'acc_no', 'acc_total')->where('status', 'active')->get();
 
         return $banks;
     }
-    
-    public function createBank(Request $request, $id)
-    {
+
+    public function createBank(Request $request, $id) {
 
         $banks = new Bank([
-            'category_id' => $request->input('categoryList'),
             'user_id' => $id,
             'title' => $request->input('bankTitle'),
             'type' => $request->input('accType'),
@@ -28,4 +26,29 @@ class BankController extends Controller
         $banks->save();
         return "success";
     }
+
+    public function editBank($id) {
+        $banks = Bank::select('id', 'title', 'type', 'acc_no')->where('id', $id)->first();
+
+        return $banks;
+    }
+
+    public function postEditBank(Request $request, $id) {
+        $banks = Bank::find($id);
+        $banks->title = $request->input('bankTitle');
+        $banks->type = $request->input('accType');
+        $banks->acc_no = $request->input('accNumber');
+        $banks->save();
+        return "success";
+    }
+    
+    public function deleteBank($id){
+
+        $incomes = Bank::find($id);
+
+        $incomes->status = "delete";
+        $incomes->save();
+        return "success";
+    }
+
 }

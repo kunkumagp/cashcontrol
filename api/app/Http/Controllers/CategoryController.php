@@ -55,7 +55,7 @@ class CategoryController extends Controller
 
         $category = Category::find($id);
 
-        $category->status = "inactive";
+        $category->status = "delete";
         $category->save();
         return "success";
     }
