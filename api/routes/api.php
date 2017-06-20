@@ -93,12 +93,6 @@ Route::get('/totalIncome/{id}', [
 ]);
 
 
-Route::get('/viewIncome/{id}', [
-    'uses' => 'IncomeController@viewIncome',
-    'as' => 'viewIncome'
-]);
-
-
 Route::get('/getStore', [
     'uses' => 'IncomeController@getStore',
     'as' => 'getStore'

@@ -21,18 +21,8 @@ class IncomeController extends Controller {
         return $incomes;
     }
 
-    public function viewIncome($id) {
-        $incomes = Income::select('id', 'category_id', 'title', 'description', 'amount', 'store_id', 'bank_id')
-                ->with('category')
-                ->with('store')
-                ->with('bank')
-                ->where('id', $id)
-                ->first();
-
-        return $incomes;
-    }
-
     public function createIncome(Request $request, $id) {
+        
 
         if ($request->input('incomeDescription') === null) {
             $description = "";
