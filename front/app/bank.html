@@ -62,6 +62,7 @@
                     $.get(api+"getBank/"+userId, function (data) {
 
                         var myBooks = data;
+                        
 
                         var col = [];
                         for (var i = 0; i < myBooks.length; i++) {
@@ -81,6 +82,7 @@
 
                             }
                             var id=myBooks[i]['id'];
+
                             tabCell.innerHTML += '<button onclick="deleteBank('+id+')" class="actionstyle btn btn-danger">Delete</button><button onclick="editBank('+id+')" class="actionstyle btn btn-primary">Edit</a>';
                         }
 
@@ -123,7 +125,7 @@
   <!-- Bootstrap -->
   <script src="js/bootstrap.js"></script>
   <!-- App -->
-  <script src="js/app.js"></script>  
+  <script src="js/app.js"></script>
   <script src="js/slimscroll/jquery.slimscroll.min.js"></script>
   <!-- datatables -->
 <script src="js/datatables/jquery.dataTables.min.js"></script>

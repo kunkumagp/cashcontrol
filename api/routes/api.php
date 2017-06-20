@@ -57,6 +57,7 @@ Route::get('/getCategoryByType/{data}', [
 ]);
 
 
+
 Route::get('/editCategory/{id}', [
     'uses' => 'CategoryController@editCategory',
     'as' => 'editCategory'
@@ -92,6 +93,21 @@ Route::get('/totalIncome/{id}', [
 ]);
 
 
+Route::get('/viewIncome/{id}', [
+    'uses' => 'IncomeController@viewIncome',
+    'as' => 'viewIncome'
+]);
+
+
+Route::get('/getStore', [
+    'uses' => 'IncomeController@getStore',
+    'as' => 'getStore'
+]);
+
+Route::get('/getBank', [
+    'uses' => 'IncomeController@getBank',
+    'as' => 'getBank'
+]);
 
 Route::get('/editIncome/{id}', [
     'uses' => 'IncomeController@editIncome',

@@ -11,137 +11,193 @@
     var api = localStorage.getItem("api");
 
 
+
 </script>
 <div id="header"></div>
 </head>
 <body class="">
-<section class="vbox">
-    <div id="top"></div>
-    <section>
-        <section class="hbox stretch">
-            <!-- .aside -->
-            <aside class="bg-black aside-md hidden-print" id="nav">
-                <div id="left"></div>
-            </aside>
-            <!-- /.aside -->
-            <section id="content">
-                <section class="vbox">
-                    <section class="scrollable padder">
-                        <div class="m-b-md">
-                            <h3 class="m-b-none">Income</h3>
-                            <small><a href="index.html">Home</a> / <a href="income.html">Income</a> / <span
-                                    class="m-t-xs text-success">Edit Income</span></small>
-                        </div>
-                        <section class="panel panel-default">
-                            <header class="panel-heading font-bold">
-                                Add New Income
-                            </header>
-                            <div class="panel-body">
-                                <div id="successMsg" class="alert alert-success hidden">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                    <i class="fa fa-ok-sign"></i>
-                                    <strong>Congratulations!</strong> You successfully edited
-                                    <a href="#" class="alert-link">this income record</a>.
-                                </div>
-                                <form class="form-horizontal" method="post" name="addIncome" id="addIncome">
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="categoryList">Category</label>
-                                        <div class="col-sm-10">
-                                            <select name="categoryList" id="categoryList" class="form-control m-b">
-                                                <option value="">Select Category</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="incomeTitle">Title</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="incomeTitle" name="incomeTitle">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="incomeAmount">Amount</label>
-                                        <div class="col-sm-10">
-                                            <input type="number" class="form-control" id="incomeAmount" name="incomeAmount" >
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label"
-                                               for="incomeDescription">Description</label>
-                                        <div class="col-sm-10">
-                                            <textarea type="text" class="form-control" rows="5" id="incomeDescription"
-                                                      name="incomeDescription"></textarea>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="line line-dashed b-b line-lg pull-in"></div>
-                                    <div class="form-group">
-                                        <div class="col-sm-4 col-sm-offset-2">
-                                            <button type="reset" class="btn btn-default">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">Edit Income</button>
-                                        </div>
-                                    </div>
-                                </form>
+    <section class="vbox">
+        <div id="top"></div>
+        <section>
+            <section class="hbox stretch">
+                <!-- .aside -->
+                <aside class="bg-black aside-md hidden-print" id="nav">
+                    <div id="left"></div>
+                </aside>
+                <!-- /.aside -->
+                <section id="content">
+                    <section class="vbox">
+                        <section class="scrollable padder">
+                            <div class="m-b-md">
+                                <h3 class="m-b-none">Income</h3>
+                                <small><a href="index.html">Home</a> / <a href="income.html">Income</a> / <span
+                                        class="m-t-xs text-success">Edit Income</span></small>
                             </div>
+                            <section class="panel panel-default">
+                                <header class="panel-heading font-bold">
+                                    Add New Income
+                                </header>
+                                <div class="panel-body">
+                                    <div id="successMsg" class="alert alert-success hidden">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <i class="fa fa-ok-sign"></i>
+                                        <strong>Congratulations!</strong> You successfully edited
+                                        <a href="#" class="alert-link">this income record</a>.
+                                    </div>
+                                    <form class="form-horizontal" method="post" name="addIncome" id="addIncome">
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="categoryList">Category</label>
+                                            <div class="col-sm-10">
+                                                <select name="categoryList" id="categoryList" class="form-control m-b">
+                                                    <option value="">Select Category</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="storeList">Store</label>
+                                            <div class="col-sm-10">
+                                                <select name="storeList" id="storeList" class="form-control m-b">
+                                                    <option value="">Select Store</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" id="accBox">
+                                            <label class="col-sm-2 control-label" for="accList">Account</label>
+                                            <div class="col-sm-10">
+                                                <select name="accList" id="accList" class="form-control m-b">
+                                                    <option>Select Account</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="incomeTitle">Title</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="incomeTitle" name="incomeTitle">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="incomeAmount">Amount</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" id="incomeAmount" name="incomeAmount" >
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label"
+                                                   for="incomeDescription">Description</label>
+                                            <div class="col-sm-10">
+                                                <textarea type="text" class="form-control" rows="5" id="incomeDescription"
+                                                          name="incomeDescription"></textarea>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                                        <div class="form-group">
+                                            <div class="col-sm-4 col-sm-offset-2">
+                                                <button type="reset" class="btn btn-default">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">Edit Income</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </section>
                         </section>
                     </section>
                 </section>
             </section>
         </section>
     </section>
-</section>
-<script src="js/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="js/bootstrap.js"></script>
-<!-- App -->
-<script src="js/app.js"></script>
-<script src="js/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.js"></script>
+    <!-- App -->
+    <script src="js/app.js"></script>
+    <script src="js/slimscroll/jquery.slimscroll.min.js"></script>
 
-<!-- datepicker -->
-<script src="js/datepicker/bootstrap-datepicker.js"></script>
-<!-- slider -->
-<script src="js/slider/bootstrap-slider.js"></script>
-<!-- file input -->
-<script src="js/file-input/bootstrap-filestyle.min.js"></script>
-<!-- wysiwyg -->
-<script src="js/wysiwyg/jquery.hotkeys.js"></script>
-<script src="js/wysiwyg/bootstrap-wysiwyg.js"></script>
-<script src="js/wysiwyg/demo.js"></script>
-<!-- markdown -->
+    <!-- datepicker -->
+    <script src="js/datepicker/bootstrap-datepicker.js"></script>
+    <!-- slider -->
+    <script src="js/slider/bootstrap-slider.js"></script>
+    <!-- file input -->
+    <script src="js/file-input/bootstrap-filestyle.min.js"></script>
+    <!-- wysiwyg -->
+    <script src="js/wysiwyg/jquery.hotkeys.js"></script>
+    <script src="js/wysiwyg/bootstrap-wysiwyg.js"></script>
+    <script src="js/wysiwyg/demo.js"></script>
+    <!-- markdown -->
 
-<script src="js/chosen/chosen.jquery.min.js"></script>
-<script src="js/app.plugin.js"></script>
-<script>
+    <script src="js/chosen/chosen.jquery.min.js"></script>
+    <script src="js/app.plugin.js"></script>
+    <script>
 
-    $.get(api+"getCategoryByType/income",
-        function (data) {
-            for (var i = 0; i < data.length; i++) {
-                var id = data[i]['id'];
-                var title = data[i]['title'];
-                $('#categoryList')
-                    .append($("<option></option>")
-                        .attr("value", id)
-                        .text(title));
-            }
-        });
+    $.get(api + "getCategoryByType/income",
+            function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    var id = data[i]['id'];
+                    var title = data[i]['title'];
+                    $('#categoryList')
+                            .append($("<option></option>")
+                                    .attr("value", id)
+                                    .text(title));
+                }
+            });
+
+    $.get(api + "getStore",
+            function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    var id = data[i]['id'];
+                    var title = data[i]['title'];
+                    $('#storeList')
+                            .append($("<option></option>")
+                                    .attr("value", id)
+                                    .text(title));
+                }
+            });
+
+    $.get(api + "getBank",
+            function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    var id = data[i]['id'];
+                    var title = data[i]['title'] + ' (' + data[i]['type'] + ') - acc no : ' + data[i]['acc_no'];
+                    $('#accList')
+                            .append($("<option></option>")
+                                    .attr("value", id)
+                                    .text(title));
+                }
+                
+            });
+
+
 
     var url = document.location.href,
-        params = url.split('?')[1].split('&'),
-        data = {}, tmp;
+            params = url.split('?')[1].split('&'),
+            data = {}, tmp;
     for (var i = 0, l = params.length; i < l; i++) {
         tmp = params[i].split('=');
         data[tmp[0]] = tmp[1];
     }
     var id = data.id;
-    $.get(api+"editIncome/"+id, function (data) {
+    $.get(api + "editIncome/" + id, function (data) {
         document.getElementById('categoryList').value = data.category_id;
+        document.getElementById('storeList').value = data.store_id;
+
+
         document.getElementById('incomeTitle').value = data.title;
         document.getElementById('incomeAmount').value = data.amount;
         document.getElementById('incomeDescription').value = data.description;
+        if (data.store_id === 1) {
+            $("#accBox").show();
+            document.getElementById('accList').value = data.bank_id;
+        }
+
     });
 
     var str = document.getElementById('incomeTitle').value;
@@ -149,24 +205,32 @@
     document.getElementById('incomeTitle').value = res;
 
     $(document).ready(function () {
+        $("#accBox").hide();
+        document.getElementById("storeList").addEventListener("change", function (e) {
+            if (this.value === "1") {
+                $("#accBox").show();
+            } else {
+                $("#accBox").hide();
+            }
+
+        });
+
 
         $("form").on("submit", function (event) {
             event.preventDefault();
             var e = $(this).serialize();
-
-
-            $.post(api+"postEditIncome/"+id,
-                e,
-                function (data) {
-                console.log(data);
-                    if (data === "success") {
-                        $("#successMsg").removeClass(" hidden");
-                    }
-                });
+            $.post(api + "postEditIncome/" + id,
+                    e,
+                    function (data) {
+                        console.log(data);
+                        if (data === "success") {
+                            $("#successMsg").removeClass(" hidden");
+                        }
+                    });
         });
-    });
+    }
+    );
 
-
-</script>
+    </script>
 </body>
 </html>

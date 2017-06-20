@@ -18,6 +18,7 @@ class CreateIncomesTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->integer('user_id')-> unsigned();
             $table->integer('store_id')-> unsigned();
+            $table->integer('bank_id')-> unsigned();
             $table->string('title');
             $table->longText('description');
             $table->integer('amount');

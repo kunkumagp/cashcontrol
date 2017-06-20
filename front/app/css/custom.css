@@ -14,6 +14,9 @@
 .nav.dk{
     padding-left: 6%;
 }
+#accBox{
+    display: none;
+}
 @media (max-width:600px){
     .m-b-md{
         margin-top: 60px;

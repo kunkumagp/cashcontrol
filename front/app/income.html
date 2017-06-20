@@ -68,6 +68,7 @@
 
                                 $.get(api+"getIncome/"+userId, function (data) {
                                     var myBooks = data;
+                                    console.log(myBooks);
 
                                     var col = [];
                                     for (var i = 0; i < myBooks.length; i++) {
@@ -91,7 +92,7 @@
                                         }
                                         var id = myBooks[i]['id'];
 
-                                        tabCell.innerHTML += '<button onclick="deleteIncome(' + id + ')" class="actionstyle btn btn-danger">Delete</button><button onclick="editIncome(' + id + ')" class="actionstyle btn btn-primary">Edit</a>';
+                                        tabCell.innerHTML += '<button onclick="deleteIncome(' + id + ')" class="actionstyle btn btn-danger">Delete</button><button onclick="editIncome(' + id + ')" class="actionstyle btn btn-primary">Edit</a><button onclick="viewIncome(' + id + ')" class="actionstyle btn btn-success">View</a>';
                                     }
 
                                     $('[data-ride="datatables"]').each(function () {
@@ -110,6 +111,11 @@
                                     });
                                 });
 
+                                function viewIncome(id) {
+                                    $.get(api+"viewIncome/" + id, function (data) {
+                                        window.location.replace("viewIncome.html?id=" + data['id']);
+                                    });
+                                }
                                 function editIncome(id) {
                                     $.get(api+"editIncome/" + id, function (data) {
                                         window.location.replace("editIncome.html?id=" + data['id']);

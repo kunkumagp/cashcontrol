@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 class BankController extends Controller {
 
     public function getBank() {
-        $banks = Bank::select('id', 'title', 'type', 'acc_no', 'acc_total')->where('status', 'active')->get();
+        $banks = Bank::select('id', 'title', 'type', 'acc_no', 'acc_total')
+        ->where('status', 'active')
+        ->get();
 
         return $banks;
     }
@@ -41,7 +43,7 @@ class BankController extends Controller {
         $banks->save();
         return "success";
     }
-    
+
     public function deleteBank($id){
 
         $incomes = Bank::find($id);
