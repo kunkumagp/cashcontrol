@@ -10,6 +10,19 @@
     });
     var api = localStorage.getItem("api");
     var userId = localStorage.getItem("userId");
+    
+    $.get(api + "totalBankIncome/"+userId, function (data) {
+        document.getElementById("tAmount").innerHTML = data;
+    });
+    
+    $.get(api + "getBank/" + userId, function (data) {
+        var myBooks = data;
+        for (var i = 0; i < myBooks.length; i++) {
+            var id = myBooks[i]['id'];
+            $.get(api + "getTotalAmount/" + userId + "/" + id, function (data) {
+            });
+        }
+    });
 
 
 
@@ -35,11 +48,13 @@
                 <div style="float: right;"><a href="addnewbankacc.html" class="btn btn-s-md btn-primary">Add New Bank Account</a></div>
                 <a href="addnewbankacc.html"></a>
                 <h3 class="m-b-none">Banks</h3>
-                <small><a href="index.html">Home</a> / <span class="m-t-xs text-success">Banks</span> </small>
+                <small><a href="index.html">Home</a> / <a href="store.html">Stores</a>  / <span class="m-t-xs text-success">Banks</span> </small>
               </div>
               <section class="panel panel-default">
                 <header class="panel-heading">
-                  <h4><div class="">All Bank Accounts</div></h4>
+                  <h4><div class="">
+                          All Bank Accounts Amount : <span id="cur"></span> <strong><span id="tAmount"></span></strong>
+                      </div></h4>
                 </header>
                 <div class="table-responsive">
 
@@ -82,6 +97,7 @@
 
                             }
                             var id=myBooks[i]['id'];
+                            
 
                             tabCell.innerHTML += '<button onclick="deleteBank('+id+')" class="actionstyle btn btn-danger">Delete</button><button onclick="editBank('+id+')" class="actionstyle btn btn-primary">Edit</a>';
                         }

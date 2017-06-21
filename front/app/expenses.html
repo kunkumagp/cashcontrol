@@ -2,7 +2,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script>
-    localStorage.setItem("page", "income");
+    localStorage.setItem("page", "expenses");
     $(function () {
         $("#header").load("inc/header.html");
         $("#top").load("inc/top.html");
@@ -11,10 +11,19 @@
     var api = localStorage.getItem("api");
     var userId = localStorage.getItem("userId");
 
-    $.get(api + "totalIncome/"+userId, function (data) {
+    $.get(api + "totalExpenses/"+userId, function (data) {
         document.getElementById("tAmount").innerHTML = data;
     });
     
+    $.get(api + "getBank/" + userId, function (data) {
+        var myBooks = data;
+        for (var i = 0; i < myBooks.length; i++) {
+            var id = myBooks[i]['id'];
+            $.get(api + "getTotalAmount/" + userId + "/" + id, function () {
+            });
+        }
+    });
+
 
 
 </script>
@@ -36,16 +45,16 @@
                 <section class="vbox">
                     <section class="scrollable padder">
                         <div class="m-b-md">
-                            <div style="float: right;"><a href="addnewincome.html" class="btn btn-s-md btn-primary">Add
-                                New Income</a></div>
-                            <h3 class="m-b-none">Incomes</h3>
-                            <small><a href="index.html">Home</a> / <span class="m-t-xs text-success">Incomes</span>
+                            <div style="float: right;"><a href="addnewexpenses.html" class="btn btn-s-md btn-primary">Add
+                                New Expenses</a></div>
+                            <h3 class="m-b-none">Expenses</h3>
+                            <small><a href="index.html">Home</a> / <span class="m-t-xs text-success">Expenses</span>
                             </small>
                         </div>
                         <section class="panel panel-default">
                             <header class="panel-heading">
                                 <h4>
-                                    <div class="">Total Incomes : <span id="cur"></span> <strong><span id="tAmount"></span></strong></div>
+                                    <div class="">Total Expenses : <span id="cur"></span> <strong><span id="tAmount"></span></strong></div>
                                 </h4>
                             </header>
                             <div class="table-responsive">
@@ -67,7 +76,7 @@
                             </div>
                             <script>
 
-                                $.get(api+"getIncome/"+userId, function (data) {
+                                $.get(api+"getExpenses/"+userId, function (data) {
                                     var myBooks = data;
 
                                     var col = [];

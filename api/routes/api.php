@@ -92,16 +92,17 @@ Route::get('/totalIncome/{id}', [
     'as' => 'totalIncome'
 ]);
 
+Route::get('/totalBankIncome/{id}', [
+    'uses' => 'IncomeController@totalBankIncome',
+    'as' => 'totalBankIncome'
+]);
+
 
 Route::get('/getStore', [
     'uses' => 'IncomeController@getStore',
     'as' => 'getStore'
 ]);
 
-Route::get('/getBank', [
-    'uses' => 'IncomeController@getBank',
-    'as' => 'getBank'
-]);
 
 Route::get('/editIncome/{id}', [
     'uses' => 'IncomeController@editIncome',
@@ -118,6 +119,15 @@ Route::post('/deleteIncome/{id}', [
     'uses' => 'IncomeController@deleteIncome',
     'as' => 'deleteIncome'
 ]);
+
+Route::get('/getTotalAmount/{uid}/{bid}', [
+    'uses' => 'IncomeController@getTotalAmount',
+    'as' => 'getTotalAmount'
+]);
+
+
+
+
 
 
 Route::get('/getBank/{id}', [
@@ -144,4 +154,26 @@ Route::post('/postEditBank/{id}', [
 Route::post('/deleteBank/{id}', [
     'uses' => 'BankController@deleteBank',
     'as' => 'deleteBank'
+]);
+
+
+
+Route::get('/totalExpenses/{id}', [
+    'uses' => 'ExpensesController@totalExpenses',
+    'as' => 'totalExpenses'
+]);
+
+Route::get('/getBankExpenses/{id}', [
+    'uses' => 'ExpensesController@getBankExpenses',
+    'as' => 'getBankExpenses'
+]);
+
+Route::get('/getExpenses/{id}', [
+    'uses' => 'ExpensesController@getExpenses',
+    'as' => 'getExpenses'
+]);
+
+Route::post('/addExpenses/{id}', [
+    'uses' => 'ExpensesController@createExpenses',
+    'as' => 'addExpenses'
 ]);

@@ -2,7 +2,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script>
-    localStorage.setItem("page", "income");
+    localStorage.setItem("page", "expenses");
     $(function () {
         $("#header").load("inc/header.html");
         $("#top").load("inc/top.html");
@@ -10,7 +10,6 @@
     });
     var api = localStorage.getItem("api");
     var userId = localStorage.getItem("userId");
-
 
 
 </script>
@@ -30,37 +29,34 @@
                     <section class="vbox">
                         <section class="scrollable padder">
                             <div class="m-b-md">
-                                <h3 class="m-b-none">Income</h3>
-                                <small><a href="index.html">Home</a> / <a href="income.html">Income</a> / <span
-                                        class="m-t-xs text-success">Edit Income</span></small>
+                                <h3 class="m-b-none">Expenses</h3>
+                                <small><a href="index.html">Home</a> / <a href="expenses.html">Expenses</a> / <span class="m-t-xs text-success">Add New Expenses</span></small>
                             </div>
                             <section class="panel panel-default">
                                 <header class="panel-heading font-bold">
-                                    Add New Income
+                                    Add New Expenses
                                 </header>
                                 <div class="panel-body">
                                     <div id="successMsg" class="alert alert-success hidden">
                                         <button type="button" class="close" data-dismiss="alert">×</button>
                                         <i class="fa fa-ok-sign"></i>
-                                        <strong>Congratulations!</strong> You successfully edited
-                                        <a href="#" class="alert-link">this income record</a>.
+                                        <strong>Congratulations!</strong> You successfully insert
+                                        <a href="#" class="alert-link">a new Expenses record</a>.
                                     </div>
-                                    <form class="form-horizontal" method="post" name="addIncome" id="addIncome">
+                                    <form class="form-horizontal" method="post" name="addExpenses" id="addExpenses">
 
                                         
-
-
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="incomeTitle">Title</label>
+                                            <label class="col-sm-2 control-label" for="expensesTitle">Title</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="incomeTitle" name="incomeTitle">
+                                                <input type="text" class="form-control" id="expensesTitle" name="expensesTitle">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="incomeAmount">Amount</label>
+                                            <label class="col-sm-2 control-label" for="expensesAmount">Amount</label>
                                             <div class="col-sm-10">
-                                                <input type="number" class="form-control" id="incomeAmount" name="incomeAmount" >
+                                                <input type="number" class="form-control" id="expensesAmount" name="expensesAmount" >
                                             </div>
                                         </div>
 <div class="form-group">
@@ -92,10 +88,10 @@
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label"
-                                                   for="incomeDescription">Description</label>
+                                                   for="expensesDescription">Description</label>
                                             <div class="col-sm-10">
                                                 <textarea type="text" class="form-control" rows="5" id="incomeDescription"
-                                                          name="incomeDescription"></textarea>
+                                                          name="expensesDescription"></textarea>
                                             </div>
                                         </div>
 
@@ -104,7 +100,7 @@
                                         <div class="form-group">
                                             <div class="col-sm-4 col-sm-offset-2">
                                                 <button type="reset" class="btn btn-default">Cancel</button>
-                                                <button type="submit" class="btn btn-primary">Edit Income</button>
+                                                <button type="submit" class="btn btn-primary">Add New Expenses</button>
                                             </div>
                                         </div>
                                     </form>
@@ -138,8 +134,7 @@
     <script src="js/chosen/chosen.jquery.min.js"></script>
     <script src="js/app.plugin.js"></script>
     <script>
-
-    $.get(api + "getCategoryByType/income",
+    $.get(api + "getCategoryByType/expenses",
             function (data) {
                 for (var i = 0; i < data.length; i++) {
                     var id = data[i]['id'];
@@ -177,35 +172,6 @@
             });
 
 
-
-
-    var url = document.location.href,
-            params = url.split('?')[1].split('&'),
-            data = {}, tmp;
-    for (var i = 0, l = params.length; i < l; i++) {
-        tmp = params[i].split('=');
-        data[tmp[0]] = tmp[1];
-    }
-    var id = data.id;
-    $.get(api + "editIncome/" + id, function (data) {
-        document.getElementById('categoryList').value = data.category_id;
-        document.getElementById('storeList').value = data.store_id;
-
-
-        document.getElementById('incomeTitle').value = data.title;
-        document.getElementById('incomeAmount').value = data.amount;
-        document.getElementById('incomeDescription').value = data.description;
-        if (data.store_id === 1) {
-            $("#accBox").show();
-            document.getElementById('accList').value = data.bank_id;
-        }
-
-    });
-
-    var str = document.getElementById('incomeTitle').value;
-    var res = str.replace("%20", " ");
-    document.getElementById('incomeTitle').value = res;
-
     $(document).ready(function () {
         $("#accBox").hide();
         document.getElementById("storeList").addEventListener("change", function (e) {
@@ -216,15 +182,13 @@
             }
 
         });
-
-
+        
         $("form").on("submit", function (event) {
             event.preventDefault();
             var e = $(this).serialize();
-            $.post(api + "postEditIncome/" + id,
+            $.post(api + "addExpenses/" + 1,
                     e,
                     function (data) {
-                        console.log(data);
                         if (data === "success") {
                             $("#successMsg").removeClass(" hidden");
                             $.get(api + "getBank/" + userId, function (data) {
@@ -232,21 +196,17 @@
                                 for (var i = 0; i < myBooks.length; i++) {
                                     var id = myBooks[i]['id'];
                                     $.get(api + "getTotalAmount/" + userId + "/" + id, function (data) {
-                                        console.log(data);
                                     });
                                 }
                             });
-
+                            document.getElementById("addExpenses").reset();
                         }
                     });
-
+                    
         });
-
-    }
-    );
-
-
-
+        
+        
+    });
     </script>
 </body>
 </html>

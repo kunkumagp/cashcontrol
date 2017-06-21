@@ -17,6 +17,12 @@
 #accBox{
     display: none;
 }
+#storeicon{
+    font-size: 150px !important;
+}
+.padder-v{
+    text-align: center;
+}
 @media (max-width:600px){
     .m-b-md{
         margin-top: 60px;

@@ -55,7 +55,7 @@ class CategoryTableSeeder extends Seeder
         DB::table('categories')->insert([
             'id' => '6',
             'title' => 'Home',
-            'type' => 'Personal',
+            'type' => 'expenses',
             'created_at' => date("Y-m-d H:m:s"),
             'updated_at' => date("Y-m-d H:m:s"),
             'status' => 'active'

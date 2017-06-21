@@ -9,6 +9,7 @@
         $("#left").load("inc/left_nav.html");
     });
     var api = localStorage.getItem("api");
+    var userId = localStorage.getItem("userId");
 
 
 </script>
@@ -45,6 +46,20 @@
                                     </div>
                                     <form class="form-horizontal" method="post" name="addIncome" id="addIncome">
 
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="incomeTitle">Title</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="incomeTitle" name="incomeTitle">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="incomeAmount">Amount</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" id="incomeAmount" name="incomeAmount" >
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="categoryList">Category</label>
                                             <div class="col-sm-10">
@@ -69,20 +84,6 @@
                                                 <select name="accList" id="accList" class="form-control m-b">
                                                     <option>Select Account</option>
                                                 </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="incomeTitle">Title</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="incomeTitle" name="incomeTitle">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="incomeAmount">Amount</label>
-                                            <div class="col-sm-10">
-                                                <input type="number" class="form-control" id="incomeAmount" name="incomeAmount" >
                                             </div>
                                         </div>
 
@@ -158,7 +159,7 @@
                 }
             });
 
-    $.get(api + "getBank",
+    $.get(api + "getBank/"+userId,
             function (data) {
                 for (var i = 0; i < data.length; i++) {
                     var id = data[i]['id'];
@@ -192,10 +193,22 @@
                         console.log(data);
                         if (data === "success") {
                             $("#successMsg").removeClass(" hidden");
+                            $.get(api + "getBank/" + userId, function (data) {
+                                var myBooks = data;
+                                for (var i = 0; i < myBooks.length; i++) {
+                                    var id = myBooks[i]['id'];
+                                    $.get(api + "getTotalAmount/" + userId + "/" + id, function (data) {
+                                        console.log(data);
+                                    });
+                                }
+                            });
                             document.getElementById("addIncome").reset();
                         }
                     });
+                    
         });
+        
+        
     });
     </script>
 </body>

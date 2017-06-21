@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class BankController extends Controller {
 
-    public function getBank() {
-        $banks = Bank::select('id', 'title', 'type', 'acc_no')
+    public function getBank($id) {
+        $banks = Bank::select('id', 'title', 'type', 'acc_no', 'acc_total')
         ->where('status', 'active')
+        ->where('user_id', $id)
         ->get();
 
         return $banks;

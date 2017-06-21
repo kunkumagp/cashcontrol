@@ -43,6 +43,33 @@ class CreateForeignKeys extends Migration {
                     ->onDelete('cascade');
         });
 
+        Schema::table('expenses', function (Blueprint $t) {
+            $t
+                    ->foreign('category_id')
+                    ->references('id')
+                    ->on('categories')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $t
+                    ->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $t
+                    ->foreign('store_id')
+                    ->references('id')
+                    ->on('stores')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $t
+                    ->foreign('bank_id')
+                    ->references('id')
+                    ->on('banks')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+        });
+
         Schema::table('banks', function(Blueprint $t) {
             $t
                     ->foreign('user_id')
@@ -65,6 +92,12 @@ class CreateForeignKeys extends Migration {
             $t->dropForeign('incomes_user_id_foreign');
             $t->dropForeign('incomes_store_id_foreign');
             $t->dropForeign('incomes_bank_id_foreign');
+        });
+        Schema::table('expenses', function (Blueprint $t) {
+            $t->dropForeign('expenses_category_id_foreign');
+            $t->dropForeign('expenses_user_id_foreign');
+            $t->dropForeign('expenses_store_id_foreign');
+            $t->dropForeign('expenses_bank_id_foreign');
         });
     }
 
