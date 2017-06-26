@@ -1,118 +1,129 @@
 <script>
-    if(localStorage.getItem("token")!==""){
+    //console.log(localStorage.getItem("token"));
+
+
+    var token = localStorage.getItem("token");
+    if (token === null) {
+        var token = "";
+    }
+    if (token !== "") {
         window.location.replace('app/index.html');
     }
+
     var api = localStorage.getItem("api");
 </script>
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="CoreUI Bootstrap 4 Admin Template">
-    <meta name="author" content="Lukasz Holeczek">
-    <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
-    <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="CoreUI Bootstrap 4 Admin Template">
+        <meta name="author" content="Lukasz Holeczek">
+        <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
+        <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
 
-    <title>Cash Controller</title>
+        <title>Cash Controller</title>
 
-    <!-- Icons -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/simple-line-icons.css" rel="stylesheet">
+        <!-- Icons -->
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/simple-line-icons.css" rel="stylesheet">
 
-    <!-- Main styles for this application -->
-    <link href="css/style.css" rel="stylesheet">
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("button").click(function () {
-                var formData = $("#login_frm").serializeArray();
+        <!-- Main styles for this application -->
+        <link href="css/style.css" rel="stylesheet">
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script>
+    $(document).ready(function () {
 
-                $.post(api+"login",
+        $.get("env.json", function (envJson) {
+            localStorage.setItem('api', envJson.api);
+        });
+
+        $("button").click(function () {
+            var formData = $("#login_frm").serializeArray();
+
+            $.post(api + "login",
                     formData,
                     function (data) {
-                    if(data==='error'){
+                        if (data === 'error') {
 
-                        document.getElementById("errormsg").innerHTML = "Username or password is incorrect.<br/>please try again.!";
-                    } else {
+                            document.getElementById("errormsg").innerHTML = "Username or password is incorrect.<br/>please try again.!";
+                        } else {
 
-                        localStorage.setItem("token", data['token']);
-                        localStorage.setItem('cur', data['user']['currency']);
-                        localStorage.setItem('userId', data['user']['id']);
-                        if(localStorage.getItem("token")!==""){
-                            window.location.replace('app/index.html');
+                            localStorage.setItem("token", data['token']);
+                            localStorage.setItem('cur', data['user']['currency']);
+                            localStorage.setItem('userId', data['user']['id']);
+                            if (localStorage.getItem("token") !== "") {
+                                window.location.replace('app/index.html');
+                            }
                         }
-                    }
-                });
-            });
+                    });
         });
-    </script>
-    <style>
-        #errormsg{
-            color: #FF0000;
-        }
-    </style>
-</head>
+    });
+        </script>
+        <style>
+            #errormsg{
+                color: #FF0000;
+            }
+        </style>
+    </head>
 
-<body class="app flex-row align-items-center">
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <!--<div align="center"><h1><strong>Cash</strong>Controller</h1></div>-->
-            <div class="card-group mb-0">
-                <div class="card p-4">
-                    <div class="card-block">
-                        <form method="post" name="login_frm" id="login_frm">
-                            <h1>Login</h1>
-                            <p class="text-muted">Sign In to your account</p>
-                            <div id="errormsg"></div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-addon"><i class="icon-user"></i>
-                                </span>
-                                <input type="text" class="form-control" placeholder="Username" name="email" id="email">
+    <body class="app flex-row align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <!--<div align="center"><h1><strong>Cash</strong>Controller</h1></div>-->
+                    <div class="card-group mb-0">
+                        <div class="card p-4">
+                            <div class="card-block">
+                                <form method="post" name="login_frm" id="login_frm">
+                                    <h1>Login</h1>
+                                    <p class="text-muted">Sign In to your account</p>
+                                    <div id="errormsg"></div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-addon"><i class="icon-user"></i>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="Username" name="username" id="username">
+                                    </div>
+                                    <div class="input-group mb-4">
+                                        <span class="input-group-addon"><i class="icon-lock"></i>
+                                        </span>
+                                        <input type="password" class="form-control" placeholder="Password" name="password"
+                                               id="password">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button type="button" type="submit" class="btn btn-primary px-4">Login</button>
+                                        </div>
+                                        <div class="col-6 text-right">
+                                            <a href="#" class="btn btn-link px-0">Forgot password?</a>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="input-group mb-4">
-                                <span class="input-group-addon"><i class="icon-lock"></i>
-                                </span>
-                                <input type="password" class="form-control" placeholder="Password" name="password"
-                                       id="password">
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <button type="button" type="submit" class="btn btn-primary px-4">Login</button>
+                        </div>
+                        <div class="card card-inverse card-primary py-5 d-md-down-none" style="width:44%">
+                            <div class="card-block text-center">
+                                <div>
+                                    <h2>Sign up</h2>
+                                    <p>Track all your expenses, incomes, bills and loans to find out what happens to your money. Use <b>CashControl</b> to take control of your personal finances and learn how to save money.Create your free account.</p>
+                                    <a type="text" href="pages-register.html" class="btn btn-primary active mt-3">Register Now!</a>
                                 </div>
-                                <div class="col-6 text-right">
-                                    <a href="#" class="btn btn-link px-0">Forgot password?</a>
-                                </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="card card-inverse card-primary py-5 d-md-down-none" style="width:44%">
-                    <div class="card-block text-center">
-                        <div>
-                            <h2>Sign up</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua.</p>
-                            <a type="text" href="pages-register.html" class="btn btn-primary active mt-3">Register
-                                Now!</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- Bootstrap and necessary plugins -->
+        <!-- Bootstrap and necessary plugins -->
 
-<script src="bower_components/tether/dist/js/tether.min.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="bower_components/tether/dist/js/tether.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 
-</body>
+    </body>
 
 </html>

@@ -60,8 +60,9 @@ class ExpensesController extends Controller {
             'description' => $description,
             'status' => 'active'
         ]);
-        $expenses->save();
-        return "success";
+        dd($expenses);
+        //$expenses->save();
+//        return "success";
     }
 
 }

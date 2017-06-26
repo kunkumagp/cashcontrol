@@ -24,9 +24,7 @@
         var myBooks = data;
         for (var i = 0; i < myBooks.length; i++) {
             var id = myBooks[i]['id'];
-            $.get(api + "getTotalAmount/" + userId + "/" + id, function (data) {
-                console.log(data);
-            });
+            $.get(api + "getTotalAmount/" + userId + "/" + id, function () {});
         }
     });
 
@@ -36,6 +34,7 @@
 </head>
 
 <body class="">
+    
     <section class="vbox">
         <div id="top"></div>
         <section>

@@ -15,9 +15,10 @@ class UserTableSeeder extends Seeder
             'id'=>'1',
             'created_at'=>'2017-05-23 08:21:19',
             'updated_at'=>'2017-05-23 08:21:19',
-            'name'=>'Kunkuma Geeth',
-            'email'=>'kunkumagp@gmail.com',
-            'password'=>'$2y$10$nN9tifXHOFl3Ypk/hRJyXOXixbU9wOP5HA3wqw2pn4F182Kha6dNO',
+            'name'=>'Administrator',
+            'username'=>'admin',
+            'email'=>'admin@cashcontrol.com',
+            'password'=>'$2y$10$5vdBa1892X9aKEIkO4Eo8eopbAxl6s7CfWn/rQ61AbqGKoOKTE7ka',
             'currency'=>'Rs.'
         ]);
         $user->save();

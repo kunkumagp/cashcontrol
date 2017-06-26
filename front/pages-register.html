@@ -1,92 +1,124 @@
-<!--
- * CoreUI - Open Source Bootstrap Admin Template
- * @version v1.0.0-alpha.5
- * @link http://coreui.io
- * Copyright (c) 2017 creativeLabs Łukasz Holeczek
- * @license MIT
- -->
+
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="CoreUI Bootstrap 4 Admin Template">
-    <meta name="author" content="Lukasz Holeczek">
-    <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
-    <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="CoreUI Bootstrap 4 Admin Template">
+        <meta name="author" content="Lukasz Holeczek">
+        <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
+        <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
 
-    <title>CoreUI Bootstrap 4 Admin Template</title>
+        <title>CoreUI Bootstrap 4 Admin Template</title>
 
-    <!-- Icons -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/simple-line-icons.css" rel="stylesheet">
+        <!-- Icons -->
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/simple-line-icons.css" rel="stylesheet">
 
-    <!-- Main styles for this application -->
-    <link href="css/style.css" rel="stylesheet">
+        <!-- Main styles for this application -->
+        <link href="css/style.css" rel="stylesheet">
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $.get("env.json", function (envJson) {
+                    localStorage.setItem('api', envJson.api);
+                });
+                var api = localStorage.getItem("api");
+                $("button").click(function () {
+                    var formData = $("#signup_frm").serializeArray();
+                    $.post(api + "signup",
+                            formData,
+                            function (data) {
+                                if (data === "success") {
+                                    var userName = document.getElementById("username").value;
+                                    var pass = document.getElementById("pass").value;
+                                    var loginData = "username="+userName+"&pass="+pass;
+                                    $.post(api + "autoLogin",
+                                            loginData,
+                                            function (data) {
+                                                if (data === 'error') {
 
-</head>
+                                                    document.getElementById("errormsg").innerHTML = "Username or password is incorrect.<br/>please try again.!";
+                                                } else {
 
-<body class="app flex-row align-items-center">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card mx-4">
-                    <div class="card-block p-4">
-                        <h1>Register</h1>
-                        <p class="text-muted">Create your account</p>
-                        <div class="input-group mb-3">
-                            <span class="input-group-addon"><i class="icon-user"></i>
-                            </span>
-                            <input type="text" class="form-control" placeholder="Username">
+                                                    localStorage.setItem("token", data['token']);
+                                                    localStorage.setItem('cur', data['user']['currency']);
+                                                    localStorage.setItem('userId', data['user']['id']);
+                                                    if (localStorage.getItem("token") !== "") {
+                                                        window.location.replace('app/index.html');
+                                                    }
+                                                }
+                                            });
+                                }
+                            });
+                });
+            });
+        </script>
+
+    </head>
+
+    <body class="app flex-row align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card mx-4">
+                        <div class="card-block p-4">
+                            <form method="post" name="signup_frm" id="signup_frm">
+                                <h1>Register</h1>
+                                <p class="text-muted">Create your account</p>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-addon"><i class="icon-user"></i>
+                                    </span>
+                                    <input name="username" type="text" required class="form-control" id="username" placeholder="Username">
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-addon">@</span>
+                                    <input name="email" type="text" required class="form-control" id="email" placeholder="Email">
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-addon"><i class="icon-lock"></i>
+                                    </span>
+                                    <input name="pass" type="password" required class="form-control" id="pass" placeholder="Password">
+                                </div>
+
+                                <div class="input-group mb-4">
+                                    <span class="input-group-addon"><i class="icon-lock"></i>
+                                    </span>
+                                    <input name="cpass" type="password" required class="form-control" id="cpass" placeholder="Repeat password">
+                                </div>
+
+                                <button type="button" type="submit"  class="btn btn-block btn-success">Create Account</button>
+                            </form>
                         </div>
+                        <div class="card-footer p-4">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="btn btn-block">Already have an account..?</p>
+                                </div>
+                                <div class="col-6">
+                                    <a class="btn btn-secondary btn-md btn-block" href="./">
+                                        <span>Sign In</span>
+                                    </a>
+                                </div>
 
-                        <div class="input-group mb-3">
-                            <span class="input-group-addon">@</span>
-                            <input type="text" class="form-control" placeholder="Email">
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <span class="input-group-addon"><i class="icon-lock"></i>
-                            </span>
-                            <input type="password" class="form-control" placeholder="Password">
-                        </div>
-
-                        <div class="input-group mb-4">
-                            <span class="input-group-addon"><i class="icon-lock"></i>
-                            </span>
-                            <input type="password" class="form-control" placeholder="Repeat password">
-                        </div>
-
-                        <button type="button" class="btn btn-block btn-success">Create Account</button>
-                    </div>
-                    <div class="card-footer p-4">
-                        <div class="row">
-                            <div class="col-6">
-                                <button class="btn btn-block btn-facebook" type="button">
-                                    <span>facebook</span>
-                                </button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-block btn-twitter" type="button">
-                                    <span>twitter</span>
-                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap and necessary plugins -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/tether/dist/js/tether.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- Bootstrap and necessary plugins -->
+        <script src="bower_components/tether/dist/js/tether.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 
-</body>
+
+    </body>
 
 </html>
