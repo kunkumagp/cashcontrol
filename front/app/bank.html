@@ -99,7 +99,7 @@
                             var id=myBooks[i]['id'];
                             
 
-                            tabCell.innerHTML += '<button onclick="deleteBank('+id+')" class="actionstyle btn btn-danger">Delete</button><button onclick="editBank('+id+')" class="actionstyle btn btn-primary">Edit</a>';
+                            tabCell.innerHTML += '<button onclick="deleteBank('+id+')" class="actionstyle btn btn-danger">Delete</button><button onclick="editBank('+id+')" class="actionstyle btn btn-primary">Edit</a><button onclick="viewAccDetails('+id+')" class="actionstyle btn btn-success">View Details</a>';
                         }
 
                         $('[data-ride="datatables"]').each(function () {
@@ -119,6 +119,12 @@
                         });
                     });
 
+                    function viewAccDetails(id){
+                        window.location.replace("viewAccDetails.html?id="+id);
+//                        $.get(api+"viewAccDetails/"+id, function (data) {
+//                            
+//                        });
+                    }
                     function editBank(id){
                         $.get(api+"editBank/"+id, function (data) {
                             window.location.replace("editBank.html?id="+data['id']);

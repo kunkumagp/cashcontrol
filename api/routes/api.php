@@ -170,6 +170,23 @@ Route::post('/deleteBank/{id}', [
     'as' => 'deleteBank'
 ]);
 
+Route::get('/viewAccDetails/{id}', [
+    'uses' => 'BankController@viewAccDetails',
+    'as' => 'viewAccDetails'
+]);
+
+Route::get('/totalAcc/{id}', [
+    'uses' => 'BankController@totalAcc',
+    'as' => 'totalAcc'
+]);
+
+Route::get('/accNo/{id}', [
+    'uses' => 'BankController@accNo',
+    'as' => 'accNo'
+]);
+
+
+
 
 
 Route::get('/totalExpenses/{id}', [
