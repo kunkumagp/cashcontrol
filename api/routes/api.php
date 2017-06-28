@@ -191,3 +191,32 @@ Route::post('/addExpenses/{id}', [
     'uses' => 'ExpensesController@createExpenses',
     'as' => 'addExpenses'
 ]);
+
+Route::get('/editExpenses/{id}', [
+    'uses' => 'ExpensesController@editExpenses',
+    'as' => 'editExpenses'
+]);
+
+Route::post('/postEditExpenses/{id}', [
+    'uses' => 'ExpensesController@postEditExpenses',
+    'as' => 'postEditExpenses'
+]);
+
+Route::post('/deleteExpenses/{id}', [
+    'uses' => 'ExpensesController@deleteExpenses',
+    'as' => 'deleteExpenses'
+]);
+
+
+
+
+
+Route::get('/getWallet/{id}', [
+    'uses' => 'WalletController@getWallet',
+    'as' => 'getWallet'
+]);
+
+Route::get('/totalWallet/{id}', [
+    'uses' => 'WalletController@totalWallet',
+    'as' => 'totalWallet'
+]);

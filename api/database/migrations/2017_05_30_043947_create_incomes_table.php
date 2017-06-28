@@ -20,7 +20,7 @@ class CreateIncomesTable extends Migration
             $table->integer('store_id')-> unsigned();
             $table->integer('bank_id')->nullable()-> unsigned();
             $table->string('title');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->integer('amount');
             $table->string('status');
             $table->timestamps();

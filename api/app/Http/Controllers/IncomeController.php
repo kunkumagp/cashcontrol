@@ -32,10 +32,10 @@ class IncomeController extends Controller {
         $stl = $request->input('storeList');
         if ($stl === "1") {
             $accList = $request->input('accList');
-        }else if ($stl !== 1) {
+        } else if ($stl !== 1) {
             $accList = NULL;
         }
-        
+
 
         $incomes = new Income([
             'category_id' => $request->input('categoryList'),
@@ -59,7 +59,7 @@ class IncomeController extends Controller {
         $money = number_format($price, 2, ".", ",");
         return $money;
     }
-    
+
     public function totalBankIncome($id) {
         $price = DB::table('incomes')
                 ->where('status', 'active')
@@ -69,7 +69,6 @@ class IncomeController extends Controller {
         $money = number_format($price, 2, ".", ",");
         return $money;
     }
-    
 
     public function editIncome($id) {
         $incomes = Income::select('id', 'category_id', 'title', 'description', 'amount', 'store_id', 'bank_id')
@@ -93,10 +92,10 @@ class IncomeController extends Controller {
         $stl = $request->input('storeList');
         if ($stl === "1") {
             $accList = $request->input('accList');
-        }else if ($stl !== 1) {
+        } else if ($stl !== 1) {
             $accList = "0";
         }
-        
+
 
         $incomes->category_id = $request->input('categoryList');
         $incomes->store_id = $stl;
@@ -114,13 +113,14 @@ class IncomeController extends Controller {
         $ica = $incomes->amount;
         $incomes->status = "delete";
         $incomes->save();
-        
-        $banks = Bank::find($incomes->bank_id);
-        $ba = $banks->acc_total;
-        $newAmount = $ba - $ica;
-        $banks->acc_total = $newAmount;
-        $banks->save();
-        
+
+        if ($incomes->store_id == 1) {
+            $banks = Bank::find($incomes->bank_id);
+            $ba = $banks->acc_total;
+            $newAmount = $ba - $ica;
+            $banks->acc_total = $newAmount;
+            $banks->save();
+        }
 
         return "success";
     }
@@ -155,5 +155,7 @@ class IncomeController extends Controller {
 
         return $amount;
     }
+
+    
 
 }

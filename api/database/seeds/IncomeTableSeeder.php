@@ -50,6 +50,20 @@ class IncomeTableSeeder extends Seeder
             'created_at' => date("Y-m-d H:m:s"),
             'updated_at' => date("Y-m-d H:m:s")
         ]);
+        DB::table('incomes')->insert([
+            'id' => '4',
+            'category_id' => '3',
+            'user_id' => '1',
+            'store_id' => '2',
+            'bank_id' => NULL,
+            'title' => "Madu's Wedding",
+            'description' => '',
+            'amount' => '30000',
+            'status' => 'active',
+            'created_at' => date("Y-m-d H:m:s"),
+            'updated_at' => date("Y-m-d H:m:s")
+        ]);
+        
 
     }
 }

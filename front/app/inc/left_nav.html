@@ -3,6 +3,8 @@
         $('#index').addClass('active');
     } else if (localStorage.getItem("page") === "category") {
         $('#category').addClass('active');
+    } else if (localStorage.getItem("page") === "store") {
+        $('#store').addClass('active');
     } else if (localStorage.getItem("page") === "income") {
         $('#income').addClass('active');
     } else if (localStorage.getItem("page") === "expenses") {
@@ -42,11 +44,11 @@
                             <span class="font-bold">Category</span>
                         </a>
                     </li>
-                    <li id="bank">
-                        <a href="bank.html" class="auto">
-                            <i class="fa fa-university">
+                    <li id="store">
+                        <a href="store.html" class="auto">
+                            <i class="fa fa-database">
                             </i>
-                            <span class="font-bold">Bank</span>
+                            <span class="font-bold">Store</span>
                         </a>
                     </li>
                     

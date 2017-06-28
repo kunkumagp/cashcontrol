@@ -15,14 +15,7 @@
         document.getElementById("tAmount").innerHTML = data;
     });
     
-    $.get(api + "getBank/" + userId, function (data) {
-        var myBooks = data;
-        for (var i = 0; i < myBooks.length; i++) {
-            var id = myBooks[i]['id'];
-            $.get(api + "getTotalAmount/" + userId + "/" + id, function () {
-            });
-        }
-    });
+    
 
 
 
@@ -105,7 +98,9 @@
                                         }
                                         var id = myBooks[i]['id'];
 
-                                        tabCell.innerHTML += '<button onclick="deleteIncome(' + id + ')" class="actionstyle btn btn-danger">Delete</button><button onclick="editIncome(' + id + ')" class="actionstyle btn btn-primary">Edit</button>';
+                                        tabCell.innerHTML += '<button class="actionstyle btn btn-danger" data-toggle="modal" data-target="#' + id + '">Delete</button><button onclick="editExpenses(' + id + ')" class="actionstyle btn btn-primary">Edit</button>'; 
+                                        tabCell.innerHTML += '<div class="modal fade" id="' + id + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">Are you sure you want to <b>Delete</b> this record?</h4></div><div class="modal-body">Title : <b>' + myBooks[i]['title'] + '</b><br/>Amount : <b>' + myBooks[i]['amount'] + '</b></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button><buttontype="button" class="btn btn-danger" data-dismiss="modal" onclick="deleteExpenses('+id+')" >Delete This</button></div></div></div></div>'; 
+                                        
                                     }
 
                                     $('[data-ride="datatables"]').each(function () {
@@ -125,14 +120,14 @@
                                     });
                                 });
 
-                                function editIncome(id) {
-                                    $.get(api+"editIncome/" + id, function (data) {
-                                        window.location.replace("editIncome.html?id=" + data['id']);
+                                function editExpenses(id) {
+                                    $.get(api+"editExpenses/" + id, function (data) {
+                                        window.location.replace("editExpenses.html?id=" + data['id']);
                                     });
                                 }
-                                function deleteIncome(id) {
-                                    $.post(api+"deleteIncome/" + id, function () {
-                                        window.location.replace("income.html");
+                                function deleteExpenses(id) {
+                                    $.post(api+"deleteExpenses/" + id, function () {
+                                        window.location.replace("expenses.html");
                                     });
                                 }
                                 document.getElementById("cur").innerHTML = localStorage.getItem('cur');

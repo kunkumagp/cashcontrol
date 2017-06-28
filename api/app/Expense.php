@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Expenses extends Model
+class Expense extends Model
 {
      protected $fillable = ['id', 'user_id', 'category_id', 'store_id', 'bank_id', 'title', 'description', 'amount', 'status'];
 

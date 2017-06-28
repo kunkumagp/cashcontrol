@@ -83,6 +83,7 @@
                                     for (var i = 0; i < myBooks.length; i++) {
                                         tr = table.insertRow(-1);
                                         for (var j = 0; j < 5; j++) {
+                                            
                                             var tabCell = tr.insertCell(-1);
                                             var cat2 = myBooks[i]['category']['title'];
                                             var store = myBooks[i]['store']['title'];
@@ -96,7 +97,9 @@
                                         }
                                         var id = myBooks[i]['id'];
 
-                                        tabCell.innerHTML += '<button onclick="deleteIncome(' + id + ')" class="actionstyle btn btn-danger">Delete</button><button onclick="editIncome(' + id + ')" class="actionstyle btn btn-primary">Edit</button>';
+                                        
+                                        tabCell.innerHTML += '<button class="actionstyle btn btn-danger" data-toggle="modal" data-target="#' + id + '">Delete</button><button onclick="editIncome(' + id + ')" class="actionstyle btn btn-primary">Edit</button>'; 
+                                        tabCell.innerHTML += '<div class="modal fade" id="' + id + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">Are you sure you want to <b>Delete</b> this record?</h4></div><div class="modal-body">Title : <b>' + myBooks[i]['title'] + '</b><br/>Amount : <b>' + myBooks[i]['amount'] + '</b></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button><buttontype="button" class="btn btn-danger" data-dismiss="modal" onclick="deleteIncome('+id+')" >Delete This</button></div></div></div></div>'; 
                                     }
 
                                     $('[data-ride="datatables"]').each(function () {
