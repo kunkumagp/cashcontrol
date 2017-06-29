@@ -91,7 +91,19 @@ class BankController extends Controller {
                 ->where('status', 'active')
                 ->where('bank_id', $id)
                 ->sum('amount');
-        $money = number_format($price, 2, ".", ",");
+        
+        $incomes = DB::table('incomes')
+                ->where('status', 'active')
+                ->where('bank_id', $id)
+                ->sum('amount');
+
+        $expenses = DB::table('expenses')
+                ->where('status', 'active')
+                ->where('bank_id', $id)
+                ->sum('amount');
+                
+        $all = $incomes-$expenses;
+        $money = number_format($all, 2, ".", ",");
         
         return $money;
     }

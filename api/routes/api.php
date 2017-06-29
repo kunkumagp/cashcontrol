@@ -112,6 +112,8 @@ Route::get('/totalBankIncome/{id}', [
 ]);
 
 
+
+
 Route::get('/getStore', [
     'uses' => 'IncomeController@getStore',
     'as' => 'getStore'
@@ -137,6 +139,11 @@ Route::post('/deleteIncome/{id}', [
 Route::get('/getTotalAmount/{uid}/{bid}', [
     'uses' => 'IncomeController@getTotalAmount',
     'as' => 'getTotalAmount'
+]);
+
+Route::get('/addToBankAcc/{bid}', [
+    'uses' => 'IncomeController@addToBankAcc',
+    'as' => 'addToBankAcc'
 ]);
 
 

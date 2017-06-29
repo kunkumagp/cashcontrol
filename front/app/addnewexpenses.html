@@ -83,6 +83,7 @@
                                                 <select name="accList" id="accList" class="form-control m-b">
                                                     <option>Select Account</option>
                                                 </select>
+                                                <div id="accTotal"></div>
                                             </div>
                                         </div>
 
@@ -183,20 +184,39 @@
 
         });
         
+        $("#accTotal").hide();
+        document.getElementById("accList").addEventListener("change", function (e) {
+            if (this.value === "1") {
+                $("#accTotal").show();
+            } else {
+                $("#accTotal").hide();
+            }
+
+        });
+
+
+        document.getElementById("accList").addEventListener("change", function (e) {
+            $.get(api + "totalAcc/" + this.value, function (data) {
+                document.getElementById("accTotal").style.display = "block";
+                document.getElementById("accTotal").innerHTML = 'Account Balance : <b>' + data + '</b>';
+            });
+        });
+        
         $("form").on("submit", function (event) {
             event.preventDefault();
             var e = $(this).serialize();
             $.post(api + "addExpenses/" + 1,
                     e,
                     function (data) {
+                        console.log(data);
                         if (data === "success") {
                             $("#successMsg").removeClass(" hidden");
                             $.get(api + "getBank/" + userId, function (data) {
                                 var myBooks = data;
                                 for (var i = 0; i < myBooks.length; i++) {
                                     var id = myBooks[i]['id'];
-                                    $.get(api + "getTotalAmount/" + userId + "/" + id, function (data) {
-                                    });
+//                                    $.get(api + "addToBankAcc/" + id, function (data) {
+//                                    });
                                 }
                             });
                             document.getElementById("addExpenses").reset();

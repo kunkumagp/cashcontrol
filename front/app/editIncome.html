@@ -2,6 +2,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script>
+    
     localStorage.setItem("page", "income");
     $(function () {
         $("#header").load("inc/header.html");
@@ -47,7 +48,7 @@
                                     </div>
                                     <form class="form-horizontal" method="post" name="addIncome" id="addIncome">
 
-                                        
+
 
 
                                         <div class="form-group">
@@ -63,7 +64,7 @@
                                                 <input type="number" class="form-control" id="incomeAmount" name="incomeAmount" >
                                             </div>
                                         </div>
-<div class="form-group">
+                                        <div class="form-group">
                                             <label class="col-sm-2 control-label" for="categoryList">Category</label>
                                             <div class="col-sm-10">
                                                 <select name="categoryList" id="categoryList" class="form-control m-b">
@@ -87,6 +88,7 @@
                                                 <select name="accList" id="accList" class="form-control m-b">
                                                     <option>Select Account</option>
                                                 </select>
+                                                <div id="accTotal"></div>
                                             </div>
                                         </div>
 
@@ -163,7 +165,7 @@
                 }
             });
 
-    $.get(api + "getBank/"+userId,
+    $.get(api + "getBank/" + userId,
             function (data) {
                 for (var i = 0; i < data.length; i++) {
                     var id = data[i]['id'];
@@ -199,7 +201,9 @@
             $("#accBox").show();
             document.getElementById('accList').value = data.bank_id;
         }
-
+        
+        document.getElementById("accTotal").style.display = "block";
+        document.getElementById("accTotal").innerHTML = 'Account Balance : <b>' + accounting.formatMoney(data['bank']['acc_total'],[symbol = ""],[precision = 2],[thousand = ","],[decimal = "."],[format = "%s%v"]); + '</b>';
     });
 
     var str = document.getElementById('incomeTitle').value;
@@ -215,6 +219,23 @@
                 $("#accBox").hide();
             }
 
+        });
+
+        $("#accTotal").hide();
+        document.getElementById("accList").addEventListener("change", function () {
+            if (this.value === "1") {
+                $("#accTotal").show();
+            } else {
+                $("#accTotal").hide();
+            }
+
+        });
+
+        document.getElementById("accList").addEventListener("change", function (e) {
+            $.get(api + "totalAcc/" + this.value, function (data) {
+                document.getElementById("accTotal").style.display = "block";
+                document.getElementById("accTotal").innerHTML = 'Account Balance : <b>' + data + '</b>';
+            });
         });
 
 

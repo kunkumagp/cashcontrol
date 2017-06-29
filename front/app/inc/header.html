@@ -8,54 +8,56 @@
     } else {
         var token = localStorage.getItem("token");
 
-        $.post(api+"checkuser",
-            {
-                token: token
-            },
-            function (data) {
-                if (data === "expire") {
-                    localStorage.setItem("token", "");
-                    window.location.replace('../index.html');
-                } else {
-                    document.getElementById("name").innerHTML = data['name'];
-                    if (data['name'] === "") {
-                        window.location.replace('../index.html');
-                    }
-                }
+        $.post(api + "checkuser", {token: token}, function (data, status) {
 
-            });
+            if (data === "expire") {
+                localStorage.setItem("token", "");
+                window.location.replace('../index.html');
+            } else {
+                document.getElementById("name").innerHTML = data['name'];
+                if (data['name'] === "") {
+                    window.location.replace('../index.html');
+                }
+            }
+
+        }).fail(function (response) {
+            if(response.status===404){
+                localStorage.setItem("token", "");
+                window.location.replace('../index.html');
+            }
+        });;
     }
 
 </script>
 
 <html lang="en" class="app">
-<head>
-    <meta charset="utf-8"/>
-    <title>Scale | Web Application</title>
-    <meta name="description"
-          content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Scale | Web Application</title>
+        <meta name="description"
+              content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
-    <link rel="stylesheet" href="css/animate.css" type="text/css"/>
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"/>
-    <link rel="stylesheet" href="css/icon.css" type="text/css"/>
-    <link rel="stylesheet" href="css/font.css" type="text/css"/>
-    <link rel="stylesheet" href="css/app.css" type="text/css"/>
-    <link rel="stylesheet" href="css/custom.css" type="text/css"/>
-    <link rel="stylesheet" href="js/calendar/bootstrap_calendar.css" type="text/css"/>
-    <link rel="stylesheet" href="plugin/font_awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="js/chosen/chosen.css" type="text/css"/>
+        <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+        <link rel="stylesheet" href="css/animate.css" type="text/css"/>
+        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"/>
+        <link rel="stylesheet" href="css/icon.css" type="text/css"/>
+        <link rel="stylesheet" href="css/font.css" type="text/css"/>
+        <link rel="stylesheet" href="css/app.css" type="text/css"/>
+        <link rel="stylesheet" href="css/custom.css" type="text/css"/>
+        <link rel="stylesheet" href="js/calendar/bootstrap_calendar.css" type="text/css"/>
+        <link rel="stylesheet" href="plugin/font_awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="js/chosen/chosen.css" type="text/css"/>
 
 
-    <!--[if lt IE 9]>
+        <!--[if lt IE 9]>
+    
+        <script src="js/ie/html5shiv.js"></script>
+        <script src="js/ie/respond.min.js"></script>
+        <script src="js/ie/excanvas.js"></script>
+        <![endif]-->
 
-    <script src="js/ie/html5shiv.js"></script>
-    <script src="js/ie/respond.min.js"></script>
-    <script src="js/ie/excanvas.js"></script>
-    <![endif]-->
-
-    <script src="js/accounting.js"></script>
+        <script src="js/accounting.js"></script>
 
 
 

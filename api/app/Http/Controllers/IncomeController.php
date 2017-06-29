@@ -48,6 +48,11 @@ class IncomeController extends Controller {
             'status' => 'active'
         ]);
         $incomes->save();
+        
+        $bankAcc = Bank::find($accList);
+        $accTotal = $bankAcc->acc_total;
+        $bankAcc->acc_total = $accTotal+$request->input('incomeAmount');
+        $bankAcc->save();
         return "success";
     }
 
@@ -59,6 +64,7 @@ class IncomeController extends Controller {
         $money = number_format($price, 2, ".", ",");
         return $money;
     }
+    
 
     public function totalBankIncome($id) {
         $price = DB::table('incomes')
@@ -69,6 +75,8 @@ class IncomeController extends Controller {
         $money = number_format($price, 2, ".", ",");
         return $money;
     }
+    
+    
 
     public function editIncome($id) {
         $incomes = Income::select('id', 'category_id', 'title', 'description', 'amount', 'store_id', 'bank_id')
@@ -82,7 +90,12 @@ class IncomeController extends Controller {
     }
 
     public function postEditIncome(Request $request, $id) {
+        
+        
+        
+        
         $incomes = Income::find($id);
+        $oldAmount = $incomes->amount;
 
         if ($request->input('incomeDescription') === null) {
             $description = "";
@@ -104,6 +117,16 @@ class IncomeController extends Controller {
         $incomes->amount = $request->input('incomeAmount');
         $incomes->description = $description;
         $incomes->save();
+        
+        
+        $bankAcc = Bank::find($accList);
+        $accTotal = $bankAcc->acc_total;
+        $accTotalEdit = $accTotal-$oldAmount;
+        $bankAcc->acc_total = $accTotalEdit+$request->input('incomeAmount');
+        $bankAcc->save();
+        
+//        return $bankAcc->acc_total;
+        
         return "success";
     }
 
@@ -143,6 +166,7 @@ class IncomeController extends Controller {
                 ->where('user_id', $id)
                 ->where('id', $bid)
                 ->get();
+        
 
         if ($banks !== $amount) {
             $bankAcc = Bank::find($bid);
@@ -154,6 +178,11 @@ class IncomeController extends Controller {
 //        dd($amount);
 
         return $amount;
+    }
+    
+    public function addToBankAcc(Request $request, $bid) {
+        return $bid;
+        
     }
 
     

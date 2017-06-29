@@ -60,6 +60,13 @@ class ExpensesController extends Controller {
             'status' => 'active'
         ]);
         $expenses->save();
+        
+        $bankAcc = Bank::find($accList);
+        $accTotal = $bankAcc->acc_total;
+        $bankAcc->acc_total = $accTotal - $request->input('expensesAmount');
+        $bankAcc->save();
+        
+//     return    $bankAcc;
         return "success";
     }
     
@@ -105,14 +112,17 @@ class ExpensesController extends Controller {
         $incomes = Expense::find($id);
         $ica = $incomes->amount;
         $incomes->status = "delete";
-        $incomes->save();
+        //$incomes->save();
+        
+        return $incomes->store_id;
 
         if ($incomes->store_id == 1) {
             $banks = Bank::find($incomes->bank_id);
+            return $banks;
             $ba = $banks->acc_total;
             $newAmount = $ba - $ica;
             $banks->acc_total = $newAmount;
-            $banks->save();
+            //$banks->save();
         }
 
         return "success";

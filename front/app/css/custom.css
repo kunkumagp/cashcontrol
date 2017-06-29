@@ -23,6 +23,9 @@
 .padder-v{
     text-align: center;
 }
+/*#accTotal{
+    display: block !important;
+}*/
 @media (max-width:600px){
     .m-b-md{
         margin-top: 60px;
